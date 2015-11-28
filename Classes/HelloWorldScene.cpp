@@ -1,6 +1,4 @@
 #include "HelloWorldScene.h"
-#include "external/Box2D/Box2D.h"
-
 
 USING_NS_CC;
 
@@ -73,16 +71,6 @@ bool HelloWorld::init()
 
     // add the sprite as a child to this layer
     this->addChild(sprite, 0);
-
-    // Define the gravity vector.
-    b2Vec2 gravity;
-    gravity.Set(0.0f, 0.0f);//No gravity
-    
-    // Do we want to let bodies sleep?
-    bool doSleep = true;
-    
-    // create a world object, which will hold and simulate the rigid bodies.
-    auto _world = new b2World::b2World(gravity);
     
     return true;
 }
