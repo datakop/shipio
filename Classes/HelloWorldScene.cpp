@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "HelloWorldScene.h"
 
 USING_NS_CC;
@@ -27,6 +29,8 @@ bool HelloWorld::init()
         return false;
     }
     
+    this->setKeyboardEnabled(true);
+
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
@@ -64,17 +68,25 @@ bool HelloWorld::init()
     this->addChild(label, 1);
 
     // add "HelloWorld" splash screen"
-    auto sprite = Sprite::create("shipio.png");
+    this->spaceship = Sprite::create("shipio.png");
 
     // position the sprite on the center of the screen
-    sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+    this->spaceship->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
 
     // add the sprite as a child to this layer
-    this->addChild(sprite, 0);
+    this->addChild(this->spaceship, 0);
     
     return true;
 }
 
+
+void HelloWorld::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event)
+{
+    this->spaceship->setPosition(this->spaceship->getPositionX(),
+                                 this->spaceship->getPositionY() - 1);
+
+    CCLOG("Move to: %f %f", this->spaceship->getPositionX(), this->spaceship->getPositionY());
+}
 
 void HelloWorld::menuCloseCallback(Ref* pSender)
 {
