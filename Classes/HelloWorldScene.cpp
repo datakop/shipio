@@ -2,6 +2,8 @@
 
 #include "HelloWorldScene.h"
 
+#define SCALE_RATIO 32.0
+
 Scene* HelloWorld::createScene()
 {
     // 'scene' is an autorelease object
@@ -30,48 +32,170 @@ bool HelloWorld::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-    /////////////////////////////
-    // 2. add a menu item with "X" image, which is clicked to quit the program
-    //    you may modify it.
+    //SET MOUSE LISTENER
+    auto listener = EventListenerTouchOneByOne::create();
+    listener->setSwallowTouches(true);
 
-    // add a "close" icon to exit the progress. it's an autorelease object
-    auto closeItem = MenuItemImage::create("CloseNormal.png",
-                                           "CloseSelected.png",
-                                           CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
-    
-    closeItem->setPosition(Vec2(origin.x + visibleSize.width - closeItem->getContentSize().width/2 ,
-                                origin.y + closeItem->getContentSize().height/2));
+    listener->onTouchBegan = CC_CALLBACK_2(HelloWorld::onTouchBegan, this);
+    listener->onTouchMoved = CC_CALLBACK_2(HelloWorld::onTouchMoved, this);
+    listener->onTouchEnded = CC_CALLBACK_2(HelloWorld::onTouchEnded, this);
 
-    // create menu, it's an autorelease object
-    auto menu = Menu::create(closeItem, NULL);
-    menu->setPosition(Vec2::ZERO);
-    this->addChild(menu, 1);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+    //END MOUSE LISTENER
 
-    /////////////////////////////
-    // 3. add your codes below...
+    b2Vec2 gravity = b2Vec2(0.0f, -10.0f);
+    world = new b2World(gravity);
 
-    // add a label shows "Hello World"
-    // create and initialize a label
-    
-    auto label = Label::createWithTTF("Hello Shipio", "fonts/Marker Felt.ttf", 24);
-    
-    // position the label on the center of the screen
-    label->setPosition(Vec2(origin.x + visibleSize.width/2,
-                            origin.y + visibleSize.height - label->getContentSize().height));
+    //CREATE A BALL
+    dragOffsetStartX = 0;
+    dragOffsetEndX = 0;
+    dragOffsetStartY = 0;
+    dragOffsetEndY = 0;
+    existBall= false;
+    ballX = 500;
+    ballY = 200;
+    powerMultiplier = 10;
+    ball = Sprite::create("ball.png");
+    ball->setPosition(Point(ballX,ballY));
+    this->addChild(ball);
 
-    // add the label as a child to this layer
-    this->addChild(label, 1);
+    //HelloWorld::defineBall();
 
-    // add "HelloWorld" splash screen"
-    this->spaceship = Sprite::create("shipio.png");
 
-    // position the sprite on the center of the screen
-    this->spaceship->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
 
-    // add the sprite as a child to this layer
-    this->addChild(this->spaceship, 0);
-    
+    addWall(visibleSize.width, 10, visibleSize.width / 2, 0); // CEIL
+    addWall(10, visibleSize.height, 0, visibleSize.height / 2); // LEFT
+    addWall(10, visibleSize.height, visibleSize.width , visibleSize.height / 2); // RIGHT
+
+    for (int i = 1; i <= 31; i++) {
+        points[i] = Sprite::create("dot.png");
+        this->addChild(points[i]);
+    }
+    scheduleUpdate();
+
     return true;
+}
+
+void HelloWorld::update(float dt) {
+    int positionIterations = 10;
+    int velocityIterations = 10;
+
+    deltaTime = dt;
+    world->Step(dt, velocityIterations, positionIterations);
+
+    for (b2Body *body = world->GetBodyList(); body != NULL; body = body->GetNext())
+        if (body->GetUserData()) {
+            Sprite *sprite = (Sprite *) body->GetUserData();
+            sprite->setPosition(Vec2(body->GetPosition().x * SCALE_RATIO, body->GetPosition().y * SCALE_RATIO));
+            sprite->setRotation(-1 * CC_RADIANS_TO_DEGREES(body->GetAngle()));
+        }
+    world->ClearForces();
+    world->DrawDebugData();
+}
+
+void HelloWorld::addWall(float w, float h, float px, float py) {
+
+    b2PolygonShape floorShape;
+
+    floorShape.SetAsBox(w / SCALE_RATIO, h / SCALE_RATIO);
+    b2FixtureDef floorFixture;
+    floorFixture.density = 0;
+    floorFixture.friction = 10;
+    floorFixture.restitution = 0.5;
+    floorFixture.shape = &floorShape;
+    b2BodyDef floorBodyDef;
+
+    floorBodyDef.position.Set(px / SCALE_RATIO, py / SCALE_RATIO);
+    b2Body *floorBody = world->CreateBody(&floorBodyDef);
+
+    floorBody->CreateFixture(&floorFixture);
+
+}
+
+void HelloWorld::defineBall() {
+    ballShape.m_radius = 45 / SCALE_RATIO;
+    b2FixtureDef ballFixture;
+    ballFixture.density = 10;
+    ballFixture.friction = 0.8;
+    ballFixture.restitution = 0.6;
+    ballFixture.shape = &ballShape;
+
+    ballBodyDef.type = b2_dynamicBody;
+    ballBodyDef.userData = ball;
+
+    ballBodyDef.position.Set(ball->getPosition().x / SCALE_RATIO, ball->getPosition().y / SCALE_RATIO);
+
+    ballBody = world->CreateBody(&ballBodyDef);
+    ballBody->CreateFixture(&ballFixture);
+    ballBody->SetGravityScale(10);
+}
+
+bool HelloWorld::onTouchBegan(Touch* touch, Event* event)
+{
+    dragOffsetStartX = touch->getLocation().x;
+    dragOffsetStartY = touch->getLocation().y;
+
+
+    Point touchLocation = touch->getLocation();
+
+    ballX = touchLocation.x;
+    ballY = touchLocation.y;
+
+    if (existBall) {
+        world->DestroyBody(ballBody);
+    }
+
+    ball->setPosition(Vec2(ballX, ballY));
+    return true;
+}
+
+void HelloWorld::onTouchMoved(Touch* touch, Event* event)
+{
+    Point touchLocation = touch->getLocation();
+
+    dragOffsetEndX = touchLocation.x;
+    dragOffsetEndY = touchLocation.y;
+
+    float dragDistanceX = dragOffsetStartX - dragOffsetEndX;
+    float dragDistanceY = dragOffsetStartY - dragOffsetEndY;
+
+    //HelloWorld::simulateTrajectory(b2Vec2(dragDistanceX / SCALE_RATIO, dragDistanceY / SCALE_RATIO));
+    HelloWorld::simulateTrajectory(b2Vec2((dragDistanceX * powerMultiplier) / SCALE_RATIO, (dragDistanceY * powerMultiplier) / SCALE_RATIO));
+
+}
+
+void HelloWorld::onTouchEnded(Touch* touch, Event* event)
+{
+    existBall = true;
+
+    HelloWorld::defineBall();
+
+    Point touchLocation = touch->getLocation();
+
+    dragOffsetEndX = touchLocation.x;
+    dragOffsetEndY = touchLocation.y;
+
+    float dragDistanceX = dragOffsetStartX - dragOffsetEndX;
+    float dragDistanceY = dragOffsetStartY - dragOffsetEndY;
+
+    //ballBody->SetLinearVelocity(b2Vec2(dragDistanceX / SCALE_RATIO, dragDistanceY / SCALE_RATIO));
+    ballBody->SetLinearVelocity(b2Vec2((dragDistanceX * powerMultiplier) / SCALE_RATIO, (dragDistanceY * powerMultiplier) / SCALE_RATIO));
+}
+
+void HelloWorld::simulateTrajectory(b2Vec2 coord){
+
+    //define ball physicis
+    HelloWorld::defineBall();
+
+    ballBody->SetLinearVelocity(b2Vec2(coord.x, coord.y));
+    for (int i = 1; i <= 31; i++) {
+        world->Step(deltaTime, 10, 10);
+        points[i]->setPosition(Point(ballBody->GetPosition().x * SCALE_RATIO, ballBody->GetPosition().y * SCALE_RATIO));
+        world->ClearForces();
+
+    }
+
+    world->DestroyBody(ballBody);
 }
 
 void HelloWorld::menuCloseCallback(Ref* pSender)
