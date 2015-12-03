@@ -2,8 +2,6 @@
 
 #include "HelloWorldScene.h"
 
-USING_NS_CC;
-
 Scene* HelloWorld::createScene()
 {
     // 'scene' is an autorelease object
@@ -28,8 +26,6 @@ bool HelloWorld::init()
     {
         return false;
     }
-    
-    this->setKeyboardEnabled(true);
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -39,8 +35,7 @@ bool HelloWorld::init()
     //    you may modify it.
 
     // add a "close" icon to exit the progress. it's an autorelease object
-    auto closeItem = MenuItemImage::create(
-                                           "CloseNormal.png",
+    auto closeItem = MenuItemImage::create("CloseNormal.png",
                                            "CloseSelected.png",
                                            CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
     
@@ -77,15 +72,6 @@ bool HelloWorld::init()
     this->addChild(this->spaceship, 0);
     
     return true;
-}
-
-
-void HelloWorld::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event)
-{
-    this->spaceship->setPosition(this->spaceship->getPositionX(),
-                                 this->spaceship->getPositionY() - 1);
-
-    CCLOG("Move to: %f %f", this->spaceship->getPositionX(), this->spaceship->getPositionY());
 }
 
 void HelloWorld::menuCloseCallback(Ref* pSender)

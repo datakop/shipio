@@ -110,6 +110,7 @@ endif()
 include_directories(
   /usr/local/include/GLFW
   /usr/include/GLFW
+  ${COCOS2D_ROOT}/external
   ${COCOS2D_ROOT}/cocos
   ${COCOS2D_ROOT}/cocos/platform
   ${COCOS2D_ROOT}/cocos/audio/include/
@@ -148,7 +149,7 @@ else()
   endif ( WIN32 )
 endif()
 
-target_link_libraries(${APP_NAME} cocos2d)
+target_link_libraries(${APP_NAME} cocos2d box2d)
 
 set(APP_BIN_DIR "${CMAKE_BINARY_DIR}/bin")
 

@@ -2,8 +2,10 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
+#include "Box2D/Box2D.h"
+USING_NS_CC;
 
-class HelloWorld : public cocos2d::Layer
+class HelloWorld : public cocos2d::Layer, public b2ContactListener
 {
 public:
     static cocos2d::Scene* createScene();
@@ -13,8 +15,6 @@ public:
     virtual bool init();
 
     void menuCloseCallback(cocos2d::Ref* pSender);
-
-    virtual void onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *event);
 
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
