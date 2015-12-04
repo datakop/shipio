@@ -129,7 +129,7 @@ file(GLOB B2DEBUG_SRC
 
 set(GAME_SRC
   Classes/AppDelegate.cpp
-  Classes/HelloWorldScene.cpp
+  Classes/MainLayer.cpp
   Classes/GLESDebugDraw.cpp
   ${B2DEBUG_SRC}
   ${PLATFORM_SPECIFIC_SRC}
@@ -141,7 +141,7 @@ file(GLOB B2DEBUG_HEADER
 
 set(GAME_HEADERS
   Classes/AppDelegate.h
-  Classes/HelloWorldScene.h
+  Classes/MainLayer.h
   Classes/GLESDebugDraw.h
   ${B2DEBUG_HEADER}
   ${PLATFORM_SPECIFIC_HEADERS}

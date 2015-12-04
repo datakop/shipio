@@ -1,22 +1,22 @@
 #include "AppDelegate.h"
-#include "HelloWorldScene.h"
+#include "MainLayer.h"
 
 USING_NS_CC;
 
-static cocos2d::Size designResolutionSize = cocos2d::Size(480, 320);
+static cocos2d::Size designResolutionSize = cocos2d::Size(1024, 768);
 static cocos2d::Size smallResolutionSize = cocos2d::Size(480, 320);
 static cocos2d::Size mediumResolutionSize = cocos2d::Size(1024, 768);
 static cocos2d::Size largeResolutionSize = cocos2d::Size(2048, 1536);
 
-AppDelegate::AppDelegate() {
-
+AppDelegate::AppDelegate()
+{
 }
 
 AppDelegate::~AppDelegate() 
 {
 }
 
-//if you want a different context,just modify the value of glContextAttrs
+//if you want a different context, just modify the value of glContextAttrs
 //it will takes effect on all platforms
 void AppDelegate::initGLContextAttrs()
 {
@@ -58,7 +58,6 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // Set the design resolution
     glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::NO_BORDER);
-    glview->setFrameSize(1024, 768);
     Size frameSize = glview->getFrameSize();
     // if the frame's height is larger than the height of medium size.
     if (frameSize.height > mediumResolutionSize.height)
@@ -79,7 +78,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
     // create a scene. it's an autorelease object
-    auto scene = HelloWorld::createScene();
+    auto scene = Scene::create();
+    auto layer = MainLayer::create();
+
+    scene->addChild(layer);
 
     // run
     director->runWithScene(scene);
