@@ -123,15 +123,27 @@ if ( WIN32 )
 )
 endif( WIN32 )
 
+file(GLOB B2DEBUG_SRC
+  Classes/B2DebugDraw/*.cpp
+)
+
 set(GAME_SRC
   Classes/AppDelegate.cpp
   Classes/HelloWorldScene.cpp
+  Classes/GLESDebugDraw.cpp
+  ${B2DEBUG_SRC}
   ${PLATFORM_SPECIFIC_SRC}
+)
+
+file(GLOB B2DEBUG_HEADER
+  Classes/B2DebugDraw/*.h
 )
 
 set(GAME_HEADERS
   Classes/AppDelegate.h
   Classes/HelloWorldScene.h
+  Classes/GLESDebugDraw.h
+  ${B2DEBUG_HEADER}
   ${PLATFORM_SPECIFIC_HEADERS}
 )
 

@@ -9,44 +9,18 @@ class HelloWorld : public cocos2d::Layer
 {
 public:
     static cocos2d::Scene* createScene();
-
     virtual bool init();
-
     void menuCloseCallback(cocos2d::Ref* pSender);
-
-    // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
+
+    void onKeyPressed(EventKeyboard::KeyCode, Event*);
+    void onKeyReleased(EventKeyboard::KeyCode, Event*);
 
     void update(float) override;
 
 private:
-    Sprite *spaceship;
-
-    b2World *world;
-    float deltaTime;
-
-    Sprite *ball;
-    bool existBall;
-    float ballX;
-    float ballY;
-    int dragOffsetStartX;
-    int dragOffsetEndX;
-    int dragOffsetStartY;
-    int dragOffsetEndY;
-    float powerMultiplier;
-    b2Body *ballBody;
-    b2CircleShape ballShape;
-    b2BodyDef ballBodyDef;
-    void defineBall();
-
-    Sprite *points[32];
-
-    void addWall(float w,float h,float px,float py);
-    void simulateTrajectory(b2Vec2 coord);
-
-    bool onTouchBegan(Touch* touch, Event* event);
-    void onTouchMoved(Touch* touch, Event* event);
-    void onTouchEnded(Touch* touch, Event* event);
+    b2World *_world;
+    b2Body *_bodies[3];
 };
 
 #endif // __HELLOWORLD_SCENE_H__

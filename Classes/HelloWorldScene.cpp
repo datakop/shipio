@@ -3,7 +3,7 @@
 #include "HelloWorldScene.h"
 #include "B2DebugDraw/B2DebugDrawLayer.h"
 
-#define SCALE_RATIO 32.0
+#define SCALE_RATIO 32.0f
 
 Scene* HelloWorld::createScene()
 {
@@ -30,177 +30,88 @@ bool HelloWorld::init()
         return false;
     }
 
+    auto listener = EventListenerKeyboard::create();
+    listener->onKeyPressed = CC_CALLBACK_2(HelloWorld::onKeyPressed, this);
+    listener->onKeyReleased = CC_CALLBACK_2(HelloWorld::onKeyReleased, this);
+
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-    //SET MOUSE LISTENER
-    auto listener = EventListenerTouchOneByOne::create();
-    listener->setSwallowTouches(true);
-
-    listener->onTouchBegan = CC_CALLBACK_2(HelloWorld::onTouchBegan, this);
-    listener->onTouchMoved = CC_CALLBACK_2(HelloWorld::onTouchMoved, this);
-    listener->onTouchEnded = CC_CALLBACK_2(HelloWorld::onTouchEnded, this);
-
-    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-    //END MOUSE LISTENER
-
     b2Vec2 gravity = b2Vec2(0.0f, -10.0f);
-    world = new b2World(gravity);
-    
+    _world = new b2World(gravity);
 
-    //CREATE A BALL
-    dragOffsetStartX = 0;
-    dragOffsetEndX = 0;
-    dragOffsetStartY = 0;
-    dragOffsetEndY = 0;
-    existBall= false;
-    ballX = 500;
-    ballY = 200;
-    powerMultiplier = 10;
-    ball = Sprite::create("ball.png");
-    ball->setPosition(Point(ballX,ballY));
-    this->addChild(ball);
+    //body definition
+    b2BodyDef myBodyDef;
+    myBodyDef.type = b2_dynamicBody;
 
-    //HelloWorld::defineBall();
-    
-    this->addChild(B2DebugDrawLayer::create(world, 32), 9999);
+    //shape definition
+    b2PolygonShape polygonShape;
+    polygonShape.SetAsBox(1, 1); //a 2x2 rectangle
 
-    addWall(visibleSize.width, 10, visibleSize.width / 2, 0); // CEIL
-    addWall(10, visibleSize.height, 0, visibleSize.height / 2); // LEFT
-    addWall(10, visibleSize.height, visibleSize.width , visibleSize.height / 2); // RIGHT
+    //fixture definition
+    b2FixtureDef myFixtureDef;
+    myFixtureDef.shape = &polygonShape;
+    myFixtureDef.density = 1;
 
-    for (int i = 1; i <= 31; i++) {
-        points[i] = Sprite::create("dot.png");
-        this->addChild(points[i]);
+    //create identical bodies in different positions
+    float ctr_x = visibleSize.width / SCALE_RATIO / 2;
+    float ctr_y = visibleSize.height / SCALE_RATIO / 2;
+    for (int i = 0; i < 3; i++) {
+        myBodyDef.position.Set((i + 1) * ctr_x / 2, (i + 1) * ctr_y / 2);
+        _bodies[i] = _world->CreateBody(&myBodyDef);
+        _bodies[i]->CreateFixture(&myFixtureDef);
     }
+
+    //a static floor to drop things on
+    myBodyDef.type = b2_staticBody;
+    myBodyDef.position.Set(0, 0);
+    polygonShape.SetAsBox(visibleSize.width, 1, b2Vec2(visibleSize.width / 2, 0), 0);
+    _world->CreateBody(&myBodyDef)->CreateFixture(&myFixtureDef);
+
+    this->addChild(B2DebugDrawLayer::create(_world, SCALE_RATIO), 9999);
+
+
     scheduleUpdate();
 
     return true;
+}
+
+void HelloWorld::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
+{
+    switch (keyCode) {
+        case EventKeyboard::KeyCode::KEY_Q:
+            //apply gradual force upwards
+            _bodies[0]->ApplyForce(b2Vec2(0, 50 * 61), _bodies[0]->GetWorldCenter(), true);
+            break;
+        case EventKeyboard::KeyCode::KEY_W:
+            //apply immediate force upwards
+            _bodies[1]->ApplyLinearImpulse(b2Vec2(0, 50), _bodies[1]->GetWorldCenter(), true);
+            break;
+        case EventKeyboard::KeyCode::KEY_E:
+            //teleport or 'warp' to new location
+            _bodies[2]->SetTransform(b2Vec2(10,20), 0);
+            _bodies[2]->SetAwake(true);
+            break;
+        default:
+            break;
+    }
+}
+
+void HelloWorld::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
+{
+//    log("Key with keycode %d released", keyCode);
 }
 
 void HelloWorld::update(float dt) {
     int positionIterations = 10;
     int velocityIterations = 10;
 
-    deltaTime = dt;
-    world->Step(dt, velocityIterations, positionIterations);
+    _world->Step(dt, velocityIterations, positionIterations);
 
-    for (b2Body *body = world->GetBodyList(); body != NULL; body = body->GetNext())
-        if (body->GetUserData()) {
-            Sprite *sprite = (Sprite *) body->GetUserData();
-            sprite->setPosition(Vec2(body->GetPosition().x * SCALE_RATIO, body->GetPosition().y * SCALE_RATIO));
-            sprite->setRotation(-1 * CC_RADIANS_TO_DEGREES(body->GetAngle()));
-        }
-    
-    
-    
-    world->ClearForces();
-    world->DrawDebugData();
-}
-
-void HelloWorld::addWall(float w, float h, float px, float py) {
-
-    b2PolygonShape floorShape;
-
-    floorShape.SetAsBox(w / SCALE_RATIO, h / SCALE_RATIO);
-    b2FixtureDef floorFixture;
-    floorFixture.density = 0;
-    floorFixture.friction = 10;
-    floorFixture.restitution = 0.5;
-    floorFixture.shape = &floorShape;
-    b2BodyDef floorBodyDef;
-
-    floorBodyDef.position.Set(px / SCALE_RATIO, py / SCALE_RATIO);
-    b2Body *floorBody = world->CreateBody(&floorBodyDef);
-
-    floorBody->CreateFixture(&floorFixture);
-
-}
-
-void HelloWorld::defineBall() {
-    ballShape.m_radius = 45 / SCALE_RATIO;
-    b2FixtureDef ballFixture;
-    ballFixture.density = 10;
-    ballFixture.friction = 0.8;
-    ballFixture.restitution = 0.6;
-    ballFixture.shape = &ballShape;
-
-    ballBodyDef.type = b2_dynamicBody;
-//    ballBodyDef.userData = ball;
-
-    ballBodyDef.position.Set(ball->getPosition().x / SCALE_RATIO, ball->getPosition().y / SCALE_RATIO);
-
-    ballBody = world->CreateBody(&ballBodyDef);
-    ballBody->CreateFixture(&ballFixture);
-    ballBody->SetGravityScale(10);
-}
-
-bool HelloWorld::onTouchBegan(Touch* touch, Event* event)
-{
-    dragOffsetStartX = touch->getLocation().x;
-    dragOffsetStartY = touch->getLocation().y;
-
-
-    Point touchLocation = touch->getLocation();
-
-    ballX = touchLocation.x;
-    ballY = touchLocation.y;
-
-    if (existBall) {
-        world->DestroyBody(ballBody);
-    }
-
-    ball->setPosition(Vec2(ballX, ballY));
-    return true;
-}
-
-void HelloWorld::onTouchMoved(Touch* touch, Event* event)
-{
-    Point touchLocation = touch->getLocation();
-
-    dragOffsetEndX = touchLocation.x;
-    dragOffsetEndY = touchLocation.y;
-
-    float dragDistanceX = dragOffsetStartX - dragOffsetEndX;
-    float dragDistanceY = dragOffsetStartY - dragOffsetEndY;
-
-    //HelloWorld::simulateTrajectory(b2Vec2(dragDistanceX / SCALE_RATIO, dragDistanceY / SCALE_RATIO));
-    HelloWorld::simulateTrajectory(b2Vec2((dragDistanceX * powerMultiplier) / SCALE_RATIO, (dragDistanceY * powerMultiplier) / SCALE_RATIO));
-
-}
-
-void HelloWorld::onTouchEnded(Touch* touch, Event* event)
-{
-    existBall = true;
-
-    HelloWorld::defineBall();
-
-    Point touchLocation = touch->getLocation();
-
-    dragOffsetEndX = touchLocation.x;
-    dragOffsetEndY = touchLocation.y;
-
-    float dragDistanceX = dragOffsetStartX - dragOffsetEndX;
-    float dragDistanceY = dragOffsetStartY - dragOffsetEndY;
-
-    //ballBody->SetLinearVelocity(b2Vec2(dragDistanceX / SCALE_RATIO, dragDistanceY / SCALE_RATIO));
-    ballBody->SetLinearVelocity(b2Vec2((dragDistanceX * powerMultiplier) / SCALE_RATIO, (dragDistanceY * powerMultiplier) / SCALE_RATIO));
-}
-
-void HelloWorld::simulateTrajectory(b2Vec2 coord){
-
-    //define ball physicis
-    HelloWorld::defineBall();
-
-    ballBody->SetLinearVelocity(b2Vec2(coord.x, coord.y));
-    for (int i = 1; i <= 31; i++) {
-        world->Step(deltaTime, 10, 10);
-        points[i]->setPosition(Point(ballBody->GetPosition().x * SCALE_RATIO, ballBody->GetPosition().y * SCALE_RATIO));
-        world->ClearForces();
-
-    }
-
-    world->DestroyBody(ballBody);
+    _world->ClearForces();
+    _world->DrawDebugData();
 }
 
 void HelloWorld::menuCloseCallback(Ref* pSender)
