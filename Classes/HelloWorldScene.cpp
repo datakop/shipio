@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "HelloWorldScene.h"
+#include "B2DebugDraw/B2DebugDrawLayer.h"
 
 #define SCALE_RATIO 32.0
 
@@ -45,6 +46,7 @@ bool HelloWorld::init()
 
     b2Vec2 gravity = b2Vec2(0.0f, -10.0f);
     world = new b2World(gravity);
+    
 
     //CREATE A BALL
     dragOffsetStartX = 0;
@@ -60,8 +62,8 @@ bool HelloWorld::init()
     this->addChild(ball);
 
     //HelloWorld::defineBall();
-
-
+    
+    this->addChild(B2DebugDrawLayer::create(world, 32), 9999);
 
     addWall(visibleSize.width, 10, visibleSize.width / 2, 0); // CEIL
     addWall(10, visibleSize.height, 0, visibleSize.height / 2); // LEFT
@@ -89,6 +91,9 @@ void HelloWorld::update(float dt) {
             sprite->setPosition(Vec2(body->GetPosition().x * SCALE_RATIO, body->GetPosition().y * SCALE_RATIO));
             sprite->setRotation(-1 * CC_RADIANS_TO_DEGREES(body->GetAngle()));
         }
+    
+    
+    
     world->ClearForces();
     world->DrawDebugData();
 }
@@ -121,7 +126,7 @@ void HelloWorld::defineBall() {
     ballFixture.shape = &ballShape;
 
     ballBodyDef.type = b2_dynamicBody;
-    ballBodyDef.userData = ball;
+//    ballBodyDef.userData = ball;
 
     ballBodyDef.position.Set(ball->getPosition().x / SCALE_RATIO, ball->getPosition().y / SCALE_RATIO);
 
