@@ -123,22 +123,21 @@ if ( WIN32 )
 )
 endif( WIN32 )
 
+file(GLOB CLSS_SRC
+  Classes/*.cpp
+)
 
 set(GAME_SRC
-  Classes/Ship.cpp
-  Classes/AppDelegate.cpp
-  Classes/MainLayer.cpp
+  ${CLSS_SRC}
   ${PLATFORM_SPECIFIC_SRC}
 )
 
-file(GLOB B2DEBUG_HEADER
-  Classes/B2DebugDraw/*.h
+file(GLOB CLSS_HEADERS
+  Classes/*.h
 )
 
 set(GAME_HEADERS
-  Classes/Ship.h
-  Classes/AppDelegate.h
-  Classes/MainLayer.h
+  ${CLSS_HEADERS}
   ${PLATFORM_SPECIFIC_HEADERS}
 )
 
