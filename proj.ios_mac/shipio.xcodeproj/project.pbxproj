@@ -58,16 +58,6 @@
 		521A8EAA19F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
-		9557C46E1C11D0B70041DC4B /* B2DebugDrawLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9557C4611C11D0B70041DC4B /* B2DebugDrawLayer.cpp */; };
-		9557C46F1C11D0B70041DC4B /* B2DebugDrawLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9557C4611C11D0B70041DC4B /* B2DebugDrawLayer.cpp */; };
-		9557C4701C11D0B70041DC4B /* GB2ShapeCacheX.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9557C4631C11D0B70041DC4B /* GB2ShapeCacheX.cpp */; };
-		9557C4711C11D0B70041DC4B /* GB2ShapeCacheX.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9557C4631C11D0B70041DC4B /* GB2ShapeCacheX.cpp */; };
-		9557C4741C11D0B70041DC4B /* GLESRender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9557C4671C11D0B70041DC4B /* GLESRender.cpp */; };
-		9557C4751C11D0B70041DC4B /* GLESRender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9557C4671C11D0B70041DC4B /* GLESRender.cpp */; };
-		9557C4761C11D0B70041DC4B /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 9557C4691C11D0B70041DC4B /* README.md */; };
-		9557C4771C11D0B70041DC4B /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 9557C4691C11D0B70041DC4B /* README.md */; };
-		9557C4781C11D0B70041DC4B /* VisibleRect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9557C46A1C11D0B70041DC4B /* VisibleRect.cpp */; };
-		9557C4791C11D0B70041DC4B /* VisibleRect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9557C46A1C11D0B70041DC4B /* VisibleRect.cpp */; };
 		95644A5C1C130F530096C63A /* MainLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95644A581C130F530096C63A /* MainLayer.cpp */; };
 		95644A5D1C130F530096C63A /* MainLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95644A581C130F530096C63A /* MainLayer.cpp */; };
 		95644A5E1C130F530096C63A /* Ship.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95644A5A1C130F530096C63A /* Ship.cpp */; };
@@ -80,6 +70,8 @@
 		95C0ED771C11C3B70049645C /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C0ED741C11C3B70049645C /* ball.png */; };
 		95C0ED781C11C3B70049645C /* dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C0ED751C11C3B70049645C /* dot.png */; };
 		95C0ED791C11C3B70049645C /* dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C0ED751C11C3B70049645C /* dot.png */; };
+		95EF68F51C174BB5008595CD /* ChipmunkTestLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95EF68F01C174149008595CD /* ChipmunkTestLayer.cpp */; };
+		95EF68F61C174BB5008595CD /* ChipmunkTestLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95EF68F01C174149008595CD /* ChipmunkTestLayer.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -172,15 +164,6 @@
 		521A8EA819F11F5000D177D7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		9557C4611C11D0B70041DC4B /* B2DebugDrawLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = B2DebugDrawLayer.cpp; sourceTree = "<group>"; };
-		9557C4621C11D0B70041DC4B /* B2DebugDrawLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = B2DebugDrawLayer.h; sourceTree = "<group>"; };
-		9557C4631C11D0B70041DC4B /* GB2ShapeCacheX.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GB2ShapeCacheX.cpp; sourceTree = "<group>"; };
-		9557C4641C11D0B70041DC4B /* GB2ShapeCacheX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GB2ShapeCacheX.h; sourceTree = "<group>"; };
-		9557C4671C11D0B70041DC4B /* GLESRender.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLESRender.cpp; sourceTree = "<group>"; };
-		9557C4681C11D0B70041DC4B /* GLESRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLESRender.h; sourceTree = "<group>"; };
-		9557C4691C11D0B70041DC4B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		9557C46A1C11D0B70041DC4B /* VisibleRect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VisibleRect.cpp; sourceTree = "<group>"; };
-		9557C46B1C11D0B70041DC4B /* VisibleRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VisibleRect.h; sourceTree = "<group>"; };
 		95644A581C130F530096C63A /* MainLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainLayer.cpp; sourceTree = "<group>"; };
 		95644A591C130F530096C63A /* MainLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainLayer.h; sourceTree = "<group>"; };
 		95644A5A1C130F530096C63A /* Ship.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ship.cpp; sourceTree = "<group>"; };
@@ -189,6 +172,8 @@
 		95C0ED6C1C11C2050049645C /* stones.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = stones.jpg; sourceTree = "<group>"; };
 		95C0ED741C11C3B70049645C /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball.png; sourceTree = "<group>"; };
 		95C0ED751C11C3B70049645C /* dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot.png; sourceTree = "<group>"; };
+		95EF68F01C174149008595CD /* ChipmunkTestLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChipmunkTestLayer.cpp; sourceTree = "<group>"; };
+		95EF68F11C174149008595CD /* ChipmunkTestLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChipmunkTestLayer.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -340,9 +325,10 @@
 				95644A591C130F530096C63A /* MainLayer.h */,
 				95644A5A1C130F530096C63A /* Ship.cpp */,
 				95644A5B1C130F530096C63A /* Ship.h */,
-				9557C45F1C11D0B70041DC4B /* B2DebugDraw */,
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
+				95EF68F01C174149008595CD /* ChipmunkTestLayer.cpp */,
+				95EF68F11C174149008595CD /* ChipmunkTestLayer.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -394,22 +380,6 @@
 			name = Icons;
 			path = ios;
 			sourceTree = SOURCE_ROOT;
-		};
-		9557C45F1C11D0B70041DC4B /* B2DebugDraw */ = {
-			isa = PBXGroup;
-			children = (
-				9557C4611C11D0B70041DC4B /* B2DebugDrawLayer.cpp */,
-				9557C4621C11D0B70041DC4B /* B2DebugDrawLayer.h */,
-				9557C4631C11D0B70041DC4B /* GB2ShapeCacheX.cpp */,
-				9557C4641C11D0B70041DC4B /* GB2ShapeCacheX.h */,
-				9557C4671C11D0B70041DC4B /* GLESRender.cpp */,
-				9557C4681C11D0B70041DC4B /* GLESRender.h */,
-				9557C4691C11D0B70041DC4B /* README.md */,
-				9557C46A1C11D0B70041DC4B /* VisibleRect.cpp */,
-				9557C46B1C11D0B70041DC4B /* VisibleRect.h */,
-			);
-			path = B2DebugDraw;
-			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -561,16 +531,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
-				9557C4761C11D0B70041DC4B /* README.md in Sources */,
 				95644A5C1C130F530096C63A /* MainLayer.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
-				9557C46E1C11D0B70041DC4B /* B2DebugDrawLayer.cpp in Sources */,
 				95644A5E1C130F530096C63A /* Ship.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
+				95EF68F51C174BB5008595CD /* ChipmunkTestLayer.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
-				9557C4781C11D0B70041DC4B /* VisibleRect.cpp in Sources */,
-				9557C4701C11D0B70041DC4B /* GB2ShapeCacheX.cpp in Sources */,
-				9557C4741C11D0B70041DC4B /* GLESRender.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,13 +546,9 @@
 			files = (
 				95644A5F1C130F530096C63A /* Ship.cpp in Sources */,
 				95644A5D1C130F530096C63A /* MainLayer.cpp in Sources */,
+				95EF68F61C174BB5008595CD /* ChipmunkTestLayer.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
-				9557C4791C11D0B70041DC4B /* VisibleRect.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
-				9557C4711C11D0B70041DC4B /* GB2ShapeCacheX.cpp in Sources */,
-				9557C46F1C11D0B70041DC4B /* B2DebugDrawLayer.cpp in Sources */,
-				9557C4771C11D0B70041DC4B /* README.md in Sources */,
-				9557C4751C11D0B70041DC4B /* GLESRender.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

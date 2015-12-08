@@ -1,6 +1,8 @@
 #include "MainLayer.h"
 #include "Ship.h"
 
+MainLayer::MainLayer() {}
+
 
 bool MainLayer::init() {
     if (!cocos2d::Layer::init())
@@ -12,3 +14,6 @@ bool MainLayer::init() {
 
     return true;
 }
+
+
+MainLayer::~MainLayer() {}

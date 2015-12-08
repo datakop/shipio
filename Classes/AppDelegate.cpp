@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 #include "MainLayer.h"
+#include "ChipmunkTestLayer.h"
 
 USING_NS_CC;
 
@@ -79,7 +80,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // create a scene. it's an autorelease object
     auto scene = Scene::create();
-    auto layer = MainLayer::create();
+    auto layer = ChipmunkTestLayer::create();
 
     scene->addChild(layer);
 

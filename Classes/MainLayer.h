@@ -2,13 +2,17 @@
 #define SHIPIO_MAINLAYER_H
 
 #include "cocos2d.h"
-#include "Box2D/Box2D.h"
+
 
 class MainLayer : public cocos2d::Layer {
+private:
+    virtual bool init();
+    
 public:
     CREATE_FUNC(MainLayer);
-
-    virtual bool init();
+    
+    MainLayer();
+    ~MainLayer();
 };
 
 #endif //SHIPIO_MAINLAYER_H
