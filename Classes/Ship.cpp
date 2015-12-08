@@ -1,73 +1,48 @@
-//
-//  Ship.cpp
-//  shipio
-//
-//  Created by Bors Kopin on 05.12.15.
-//
-//
-
 #include "Ship.h"
 
-using namespace cocos2d;
 
+Ship *Ship::create() {
+    Ship *ship = new Ship();
+    if (ship->initWithFile("shipio.png")) {
+        ship->autorelease();
+        ship->initOptions();
+        ship->addEvents();
 
-MySprite::MySprite() {}
-
-MySprite::~MySprite() {}
-
-
-MySprite* MySprite::create()
-{
-    MySprite* pSprite = new MySprite();
-    
-    if (pSprite->initWithFile("shipio.png"))
-    {
-        pSprite->autorelease();
-        
-        pSprite->initOptions();
-        
-        pSprite->addEvents();
-        
-        return pSprite;
+        return ship;
     }
-    
-    CC_SAFE_DELETE(pSprite);
-    return NULL;
+
+    CC_SAFE_DELETE(ship);
+
+    return nullptr;
 }
 
 
-void MySprite::initOptions()
-{
+void Ship::initOptions() {
     // do things here like setTag(), setPosition(), any custom logic.
 }
 
-void MySprite::addEvents()
-{
+
+void Ship::addEvents() {
     auto listener = cocos2d::EventListenerTouchOneByOne::create();
     listener->setSwallowTouches(true);
-    
-    listener->onTouchBegan = [&](cocos2d::Touch* touch, cocos2d::Event* event)
-    {
+
+    listener->onTouchBegan = [&](cocos2d::Touch *touch, cocos2d::Event *event) {
         cocos2d::Vec2 p = touch->getLocation();
         cocos2d::Rect rect = this->getBoundingBox();
-        
-        if(rect.containsPoint(p))
-        {
+
+        if (rect.containsPoint(p))
             return true; // to indicate that we have consumed it.
-        }
-        
+
         return false; // we did not consume this event, pass thru.
     };
-    
-    listener->onTouchEnded = [=](cocos2d::Touch* touch, cocos2d::Event* event)
-    {
-        MySprite::touchEvent(touch);
+
+    listener->onTouchEnded = [=](cocos2d::Touch *touch, cocos2d::Event *event) {
+        Ship::touchEvent(touch);
     };
-    
+
     cocos2d::Director::getInstance()->getEventDispatcher()->addEventListenerWithFixedPriority(listener, 30);
 }
 
-void MySprite::touchEvent(cocos2d::Touch* touch)
-{
-    CCLOG("touched MySprite");
+void Ship::touchEvent(cocos2d::Touch *touch) {
+    CCLOG("Ship is touched.");
 }

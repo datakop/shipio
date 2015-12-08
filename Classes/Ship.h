@@ -1,30 +1,17 @@
-//
-//  Ship.h
-//  shipio
-//
-//  Created by Bors Kopin on 05.12.15.
-//
-//
-
-#ifndef __shipio__Ship__
-#define __shipio__Ship__
+#ifndef SHIPIO_SHIP_H
+#define SHIPIO_SHIP_H
 
 #include "cocos2d.h"
 
-class MySprite : public cocos2d::Sprite
-{
+class Ship : public cocos2d::Sprite {
 public:
-    MySprite();
-    ~MySprite();
-    static MySprite* create();
-    
+    static Ship *create();
+
     void initOptions();
-    
+
     void addEvents();
-    void touchEvent(cocos2d::Touch* touch);
-    
-private:
-    
+
+    void touchEvent(cocos2d::Touch *touch);
 };
 
-#endif /* defined(__shipio__Ship__) */
+#endif /* defined(SHIPIO_SHIP_H) */

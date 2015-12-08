@@ -123,15 +123,11 @@ if ( WIN32 )
 )
 endif( WIN32 )
 
-file(GLOB B2DEBUG_SRC
-  Classes/B2DebugDraw/*.cpp
-)
 
 set(GAME_SRC
+  Classes/Ship.cpp
   Classes/AppDelegate.cpp
   Classes/MainLayer.cpp
-  Classes/GLESDebugDraw.cpp
-  ${B2DEBUG_SRC}
   ${PLATFORM_SPECIFIC_SRC}
 )
 
@@ -140,10 +136,9 @@ file(GLOB B2DEBUG_HEADER
 )
 
 set(GAME_HEADERS
+  Classes/Ship.h
   Classes/AppDelegate.h
   Classes/MainLayer.h
-  Classes/GLESDebugDraw.h
-  ${B2DEBUG_HEADER}
   ${PLATFORM_SPECIFIC_HEADERS}
 )
 
@@ -161,7 +156,7 @@ else()
   endif ( WIN32 )
 endif()
 
-target_link_libraries(${APP_NAME} cocos2d box2d)
+target_link_libraries(${APP_NAME} cocos2d)
 
 set(APP_BIN_DIR "${CMAKE_BINARY_DIR}/bin")
 
