@@ -3,10 +3,8 @@
 
 MainLayer::MainLayer() {}
 
-
 bool MainLayer::init() {
-    if (!cocos2d::Layer::init())
-        return false;
+    if (!cocos2d::Layer::init()) return false;
 
     auto ship = Ship::create();
     ship->setPosition(cocos2d::Vec2(100, 100));
@@ -14,6 +12,5 @@ bool MainLayer::init() {
 
     return true;
 }
-
 
 MainLayer::~MainLayer() {}

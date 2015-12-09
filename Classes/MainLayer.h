@@ -3,16 +3,15 @@
 
 #include "cocos2d.h"
 
-
 class MainLayer : public cocos2d::Layer {
-private:
+   private:
     virtual bool init();
-    
-public:
+
+   public:
     CREATE_FUNC(MainLayer);
-    
+
     MainLayer();
     ~MainLayer();
 };
 
-#endif //SHIPIO_MAINLAYER_H
+#endif  // SHIPIO_MAINLAYER_H
