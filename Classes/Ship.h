@@ -4,14 +4,13 @@
 #include "cocos2d.h"
 
 class Ship : public cocos2d::Sprite {
-public:
-    static Ship *create();
-
+private:
     void initOptions();
 
     void addEvents();
 
-    void touchEvent(cocos2d::Touch *touch);
+public:
+    static Ship *create();
 };
 
 #endif /* defined(SHIPIO_SHIP_H) */

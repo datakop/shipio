@@ -1,6 +1,5 @@
 #include "AppDelegate.h"
 #include "MainLayer.h"
-#include "ChipmunkTestLayer.h"
 
 USING_NS_CC;
 
@@ -79,8 +78,13 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
     // create a scene. it's an autorelease object
-    auto scene = Scene::create();
-    auto layer = ChipmunkTestLayer::create();
+    auto scene = Scene::createWithPhysics();
+    auto physWorld = scene->getPhysicsWorld();
+    physWorld->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+    physWorld->setGravity(Vec2(0, 0));
+
+    auto layer = MainLayer::create();
+    layer->setPhysicsWorld(physWorld);
 
     scene->addChild(layer);
 
