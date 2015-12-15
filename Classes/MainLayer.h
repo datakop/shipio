@@ -10,10 +10,19 @@ private:
 
     cocos2d::PhysicsWorld *_world;
     Ship *_ship;
+    
+    cocos2d::DrawNode *_drawNode;
+    float _angle;
 
 public:
+    static const int TAG = 100;
+    
     CREATE_FUNC(MainLayer);
+    void update(float delta);
+    
     void setPhysicsWorld(cocos2d::PhysicsWorld *world) { _world = world; }
+    bool onContactBegin(cocos2d::PhysicsContact& contact);
+    
 };
 
 #endif  // SHIPIO_MAINLAYER_H

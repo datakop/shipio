@@ -10,7 +10,10 @@ private:
     void addEvents();
 
 public:
+    int health = 100;
+
     static Ship *create();
+    ~Ship();
 };
 
 #endif /* defined(SHIPIO_SHIP_H) */

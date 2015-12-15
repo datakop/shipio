@@ -70,8 +70,6 @@
 		95C0ED771C11C3B70049645C /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C0ED741C11C3B70049645C /* ball.png */; };
 		95C0ED781C11C3B70049645C /* dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C0ED751C11C3B70049645C /* dot.png */; };
 		95C0ED791C11C3B70049645C /* dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C0ED751C11C3B70049645C /* dot.png */; };
-		95EF68F51C174BB5008595CD /* ChipmunkTestLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95EF68F01C174149008595CD /* ChipmunkTestLayer.cpp */; };
-		95EF68F61C174BB5008595CD /* ChipmunkTestLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95EF68F01C174149008595CD /* ChipmunkTestLayer.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -172,8 +170,6 @@
 		95C0ED6C1C11C2050049645C /* stones.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = stones.jpg; sourceTree = "<group>"; };
 		95C0ED741C11C3B70049645C /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball.png; sourceTree = "<group>"; };
 		95C0ED751C11C3B70049645C /* dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot.png; sourceTree = "<group>"; };
-		95EF68F01C174149008595CD /* ChipmunkTestLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChipmunkTestLayer.cpp; sourceTree = "<group>"; };
-		95EF68F11C174149008595CD /* ChipmunkTestLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChipmunkTestLayer.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -327,8 +323,6 @@
 				95644A5B1C130F530096C63A /* Ship.h */,
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
-				95EF68F01C174149008595CD /* ChipmunkTestLayer.cpp */,
-				95EF68F11C174149008595CD /* ChipmunkTestLayer.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -535,7 +529,6 @@
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				95644A5E1C130F530096C63A /* Ship.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
-				95EF68F51C174BB5008595CD /* ChipmunkTestLayer.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -546,7 +539,6 @@
 			files = (
 				95644A5F1C130F530096C63A /* Ship.cpp in Sources */,
 				95644A5D1C130F530096C63A /* MainLayer.cpp in Sources */,
-				95EF68F61C174BB5008595CD /* ChipmunkTestLayer.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 			);

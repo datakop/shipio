@@ -85,6 +85,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     auto layer = MainLayer::create();
     layer->setPhysicsWorld(physWorld);
+    layer->setTag(MainLayer::TAG);
 
     scene->addChild(layer);
 
