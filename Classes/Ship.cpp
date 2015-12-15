@@ -28,17 +28,17 @@ void Ship::addEvents() {
     keyboardListener->onKeyPressed = [&](cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *event) {
         auto rot = this->getRotation();
         rot = fmodf(rot, 360.0f) / 180.0f * (float) M_PI;
-        
+
         int power = 1000;
 
         switch (keyCode) {
             case cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW:
             case cocos2d::EventKeyboard::KeyCode::KEY_A:
-                this->getPhysicsBody()->applyImpulse(Vec2(0, power/10), Vec2(54, 24));
+                this->getPhysicsBody()->applyImpulse(Vec2(0, power / 10), Vec2(54, 24));
                 break;
             case cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
             case cocos2d::EventKeyboard::KeyCode::KEY_D:
-                this->getPhysicsBody()->applyImpulse(Vec2(0, -power/10), Vec2(54, -24));
+                this->getPhysicsBody()->applyImpulse(Vec2(0, -power / 10), Vec2(54, -24));
                 break;
 
 
@@ -62,12 +62,12 @@ void Ship::addEvents() {
                 auto bullet = PhysicsBody::createCircle(4, PhysicsMaterial(0.001, 1, 0));
                 bullet->setContactTestBitmask(0xFFFFFFFF);
                 bulletSprite->addComponent(bullet);
-                
+
 //                bulletSprite->setPosition(Vec2(cosf(rot) + 10, sinf(-rot)));
                 bulletSprite->setPosition(this->getPosition() + Vec2(50, 0));
                 layer->addChild(bulletSprite);
-                
-                bulletSprite->getPhysicsBody()->applyImpulse(Vec2(cosf(rot)*10, sinf(-rot)));
+
+                bulletSprite->getPhysicsBody()->applyImpulse(Vec2(cosf(rot) * 10, sinf(-rot)));
                 break;
             }
             default:
