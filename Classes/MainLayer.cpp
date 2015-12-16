@@ -12,6 +12,14 @@ bool MainLayer::init() {
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
+    auto bgLayer = Sprite::create("bg.jpg");
+//    CCLOG("%d %d", visibleSize.height, bgLayer->getContentSize().height);
+    bgLayer->setScale(visibleSize.height / bgLayer->getContentSize().height);
+    bgLayer->setPosition(Point(visibleSize.width / 2 + origin.x,
+                               visibleSize.height / 2 + origin.y));
+//    bgLayer.set
+    this->addChild(bgLayer);
+
     auto edgeBody = PhysicsBody::createEdgeBox(visibleSize, PHYSICSBODY_MATERIAL_DEFAULT, 3);
 
     auto edgeNode = Node::create();
@@ -23,7 +31,7 @@ bool MainLayer::init() {
     _ship = Ship::create();
     _ship->setTag(10);
 
-    auto shipBody = PhysicsBody::createBox(_ship->getContentSize(), PhysicsMaterial(0.01, 1, 0));
+    auto shipBody = PhysicsBody::createBox(_ship->getContentSize(), PhysicsMaterial(0.01, 0.5, 0));
     shipBody->setContactTestBitmask(0xFFFFFFFF);
 
     _ship->setPhysicsBody(shipBody);

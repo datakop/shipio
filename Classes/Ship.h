@@ -30,9 +30,9 @@ public:
 private:
     Brain *_brain;
     int _health = 100;
-    float _forwardPower = 15;
-    float _rotatePower = 1;
-    float _maxSpeed = 110;
+    float _forwardPower = 77;
+    float _rotatePower = 13;
+    float _maxSpeed = 150;
     float _maxAngularSpeed = 1;
     static std::map<cocos2d::EventKeyboard::KeyCode, bool> keys;
 };
