@@ -70,6 +70,16 @@
 		95C0ED771C11C3B70049645C /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C0ED741C11C3B70049645C /* ball.png */; };
 		95C0ED781C11C3B70049645C /* dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C0ED751C11C3B70049645C /* dot.png */; };
 		95C0ED791C11C3B70049645C /* dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C0ED751C11C3B70049645C /* dot.png */; };
+		95DF64D41C21B1C4006AC679 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 95DF64D31C21B1C4006AC679 /* bg.jpg */; };
+		95DF64D51C21B1C4006AC679 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 95DF64D31C21B1C4006AC679 /* bg.jpg */; };
+		95DF64D71C21B47E006AC679 /* asteroid.png in Resources */ = {isa = PBXBuildFile; fileRef = 95DF64D61C21B47E006AC679 /* asteroid.png */; };
+		95DF64D81C21B47E006AC679 /* asteroid.png in Resources */ = {isa = PBXBuildFile; fileRef = 95DF64D61C21B47E006AC679 /* asteroid.png */; };
+		95DF64DB1C21BA1A006AC679 /* EntityManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95DF64D91C21BA1A006AC679 /* EntityManager.cpp */; };
+		95DF64DC1C21BA1A006AC679 /* EntityManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95DF64D91C21BA1A006AC679 /* EntityManager.cpp */; };
+		95DF64DF1C21BAD5006AC679 /* Asteroid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95DF64DD1C21BAD5006AC679 /* Asteroid.cpp */; };
+		95DF64E01C21BAD5006AC679 /* Asteroid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95DF64DD1C21BAD5006AC679 /* Asteroid.cpp */; };
+		95DF64E31C21BF72006AC679 /* BackgroudLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95DF64E11C21BF72006AC679 /* BackgroudLayer.cpp */; };
+		95DF64E41C21BF72006AC679 /* BackgroudLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95DF64E11C21BF72006AC679 /* BackgroudLayer.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -170,6 +180,14 @@
 		95C0ED6C1C11C2050049645C /* stones.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = stones.jpg; sourceTree = "<group>"; };
 		95C0ED741C11C3B70049645C /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball.png; sourceTree = "<group>"; };
 		95C0ED751C11C3B70049645C /* dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot.png; sourceTree = "<group>"; };
+		95DF64D31C21B1C4006AC679 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
+		95DF64D61C21B47E006AC679 /* asteroid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = asteroid.png; sourceTree = "<group>"; };
+		95DF64D91C21BA1A006AC679 /* EntityManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EntityManager.cpp; sourceTree = "<group>"; };
+		95DF64DA1C21BA1A006AC679 /* EntityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityManager.h; sourceTree = "<group>"; };
+		95DF64DD1C21BAD5006AC679 /* Asteroid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Asteroid.cpp; sourceTree = "<group>"; };
+		95DF64DE1C21BAD5006AC679 /* Asteroid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Asteroid.h; sourceTree = "<group>"; };
+		95DF64E11C21BF72006AC679 /* BackgroudLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BackgroudLayer.cpp; sourceTree = "<group>"; };
+		95DF64E21C21BF72006AC679 /* BackgroudLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroudLayer.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -300,6 +318,8 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				95DF64D61C21B47E006AC679 /* asteroid.png */,
+				95DF64D31C21B1C4006AC679 /* bg.jpg */,
 				521A8EA819F11F5000D177D7 /* fonts */,
 				3EACC98E19EE6D4300EB3C5E /* res */,
 				46880B7619C43A67006E1F66 /* CloseNormal.png */,
@@ -323,6 +343,12 @@
 				95644A5B1C130F530096C63A /* Ship.h */,
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
+				95DF64D91C21BA1A006AC679 /* EntityManager.cpp */,
+				95DF64DA1C21BA1A006AC679 /* EntityManager.h */,
+				95DF64DD1C21BAD5006AC679 /* Asteroid.cpp */,
+				95DF64DE1C21BAD5006AC679 /* Asteroid.h */,
+				95DF64E11C21BF72006AC679 /* BackgroudLayer.cpp */,
+				95DF64E21C21BF72006AC679 /* BackgroudLayer.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -481,6 +507,7 @@
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
 				46880B8119C43A67006E1F66 /* HelloWorld.png in Resources */,
 				46880B7D19C43A67006E1F66 /* CloseSelected.png in Resources */,
+				95DF64D71C21B47E006AC679 /* asteroid.png in Resources */,
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
 				521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */,
@@ -488,6 +515,7 @@
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
+				95DF64D41C21B1C4006AC679 /* bg.jpg in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
 				3EACC98F19EE6D4300EB3C5E /* res in Resources */,
@@ -506,6 +534,7 @@
 			files = (
 				46880B8219C43A67006E1F66 /* HelloWorld.png in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
+				95DF64D81C21B47E006AC679 /* asteroid.png in Resources */,
 				95C0ED771C11C3B70049645C /* ball.png in Resources */,
 				95C0ED791C11C3B70049645C /* dot.png in Resources */,
 				3EACC99019EE6D4300EB3C5E /* res in Resources */,
@@ -513,6 +542,7 @@
 				521A8EAA19F11F5000D177D7 /* fonts in Resources */,
 				95C0ED701C11C2050049645C /* stones.jpg in Resources */,
 				46880B7C19C43A67006E1F66 /* CloseNormal.png in Resources */,
+				95DF64D51C21B1C4006AC679 /* bg.jpg in Resources */,
 				46880B7E19C43A67006E1F66 /* CloseSelected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -524,11 +554,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95DF64DF1C21BAD5006AC679 /* Asteroid.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				95644A5C1C130F530096C63A /* MainLayer.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				95644A5E1C130F530096C63A /* Ship.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
+				95DF64DB1C21BA1A006AC679 /* EntityManager.cpp in Sources */,
+				95DF64E31C21BF72006AC679 /* BackgroudLayer.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -540,7 +573,10 @@
 				95644A5F1C130F530096C63A /* Ship.cpp in Sources */,
 				95644A5D1C130F530096C63A /* MainLayer.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				95DF64DC1C21BA1A006AC679 /* EntityManager.cpp in Sources */,
+				95DF64E01C21BAD5006AC679 /* Asteroid.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
+				95DF64E41C21BF72006AC679 /* BackgroudLayer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

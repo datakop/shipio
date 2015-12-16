@@ -1,5 +1,7 @@
 #include "AppDelegate.h"
 #include "MainLayer.h"
+#include "BackgroudLayer.h"
+
 
 USING_NS_CC;
 
@@ -80,7 +82,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // create a scene. it's an autorelease object
     auto scene = Scene::createWithPhysics();
     auto physWorld = scene->getPhysicsWorld();
-    physWorld->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+//    physWorld->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
     physWorld->setGravity(Vec2(0, 0));
 
     auto layer = MainLayer::create();
@@ -88,6 +90,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
     layer->setTag(MainLayer::TAG);
 
     scene->addChild(layer);
+    
+    auto bgLayer = BackgroudLayer::create();
+    scene->addChild(bgLayer, -1);
 
     // run
     director->runWithScene(scene);

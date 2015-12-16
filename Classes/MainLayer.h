@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 #include "Ship.h"
 #include "Map.h"
+#include "EntityManager.h"
 
 class MainLayer : public cocos2d::Layer {
 private:
@@ -17,6 +18,8 @@ public:
     bool onContactBegin(cocos2d::PhysicsContact &contact);
 
     void setPhysicsWorld(cocos2d::PhysicsWorld *world) { _world = world; }
+    
+    ~MainLayer();
 
 private:
     cocos2d::PhysicsWorld *_world;
@@ -24,6 +27,8 @@ private:
     Map *_map;
     cocos2d::DrawNode *_drawNode;
     float _angle;
+    
+    EntityManager* _entityManager;
 
 public:
     static const int TAG = 100;

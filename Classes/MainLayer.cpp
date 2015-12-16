@@ -1,4 +1,5 @@
 #include "MainLayer.h"
+#include "EntityManager.h"
 
 using namespace cocos2d;
 
@@ -11,14 +12,7 @@ bool MainLayer::init() {
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
-    auto bgLayer = Sprite::create("bg.jpg");
-//    CCLOG("%d %d", visibleSize.height, bgLayer->getContentSize().height);
-    bgLayer->setScale(visibleSize.height / bgLayer->getContentSize().height);
-    bgLayer->setPosition(Point(visibleSize.width / 2 + origin.x,
-                               visibleSize.height / 2 + origin.y));
-//    bgLayer.set
-    this->addChild(bgLayer);
+    
 
     auto edgeBody = PhysicsBody::createEdgeBox(visibleSize, PHYSICSBODY_MATERIAL_DEFAULT, 3);
 
@@ -27,35 +21,24 @@ bool MainLayer::init() {
                                 visibleSize.height / 2 + origin.y));
     edgeNode->setPhysicsBody(edgeBody);
     this->addChild(edgeNode);
-
-    _ship = Ship::create();
-    _ship->setTag(10);
-
-    auto shipBody = PhysicsBody::createBox(_ship->getContentSize(), PhysicsMaterial(0.01, 0.5, 0));
-    shipBody->setContactTestBitmask(0xFFFFFFFF);
-
-    _ship->setPhysicsBody(shipBody);
-    _ship->setPosition(Point(visibleSize.width / 2 + origin.x,
-                             visibleSize.height / 2 + origin.y));
-    _ship->setOptions();
+    
+    this->_entityManager = new EntityManager();
+    
+    this->_ship = _entityManager->createShipAtPosition(Point(visibleSize.width / 2 + origin.x,
+                                                             visibleSize.height / 2 + origin.y));
     this->addChild(_ship);
 
-    CCLOG("%f %f", _ship->getContentSize().width, _ship->getContentSize().height);
-    CCLOG("%f %f", visibleSize.width / _ship->getContentSize().width,
-          visibleSize.height / _ship->getContentSize().height);
+    
 
-
-    auto bullet = PhysicsBody::createCircle(4, PhysicsMaterial(0.001, 1, 0));
-    bullet->setContactTestBitmask(0xFFFFFFFF);
-    auto sprite = Sprite::create();
-
-    sprite->addComponent(bullet);
-    sprite->setPosition(Point(visibleSize.width / 2 + origin.x + 30,
-                              visibleSize.height / 2 + origin.y));
-    this->addChild(sprite);
-
-    sprite->getPhysicsBody()->applyImpulse(Vec2(10, 0));
-
+    this->addChild(_entityManager->createAsteroidAtPosition(Point(visibleSize.width / 2 + origin.x + 30,
+                                                                  visibleSize.height / 2 + origin.y + 100)));
+    
+    this->addChild(_entityManager->createAsteroidAtPosition(Point(visibleSize.width / 2 + origin.x - 30,
+                                                                  visibleSize.height / 2 + origin.y - 200)));
+    
+    this->addChild(_entityManager->createAsteroidAtPosition(Point(visibleSize.width / 2 + origin.x + 30,
+                                                                  visibleSize.height / 2 + origin.y - 100)));
+    
 
     auto contactListener = EventListenerPhysicsContact::create();
     contactListener->onContactBegin = CC_CALLBACK_1(MainLayer::onContactBegin, this);
@@ -108,21 +91,25 @@ bool MainLayer::onContactBegin(PhysicsContact &contact) {
     auto nodeA = contact.getShapeA()->getBody()->getNode();
     auto nodeB = contact.getShapeB()->getBody()->getNode();
 
-    if (nodeA && nodeB) {
-        if (nodeA->getTag() == 10) {
-            auto ship = static_cast<Ship *>(nodeA);
-            ship->setHealth(ship->getHealth() - 10);
-            nodeB->removeFromParentAndCleanup(true);
-            CCLOG("shut");
-        }
-
-        if (nodeB->getTag() == 10) {
-            auto ship = static_cast<Ship *>(nodeB);
-            ship->setHealth(ship->getHealth() - 10);
-            nodeA->removeFromParentAndCleanup(true);
-            CCLOG("shut");
-        }
-    }
+//    if (nodeA && nodeB) {
+//        if (nodeA->getTag() == 10) {
+//            auto ship = static_cast<Ship *>(nodeA);
+//            ship->setHealth(ship->getHealth() - 10);
+//            nodeB->removeFromParentAndCleanup(true);
+//            CCLOG("shut");
+//        }
+//
+//        if (nodeB->getTag() == 10) {
+//            auto ship = static_cast<Ship *>(nodeB);
+//            ship->setHealth(ship->getHealth() - 10);
+//            nodeA->removeFromParentAndCleanup(true);
+//            CCLOG("shut");
+//        }
+//    }
 
     return true;
+}
+
+MainLayer::~MainLayer() {
+    delete this->_entityManager;
 }

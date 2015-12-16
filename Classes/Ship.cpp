@@ -7,37 +7,39 @@ Ship *Ship::create() {
     if (ship->initWithFile("shipio.png")) {
         ship->autorelease();
         ship->initOptions();
-        ship->addEvents();
-
         return ship;
     }
-
     CC_SAFE_DELETE(ship);
-
     return nullptr;
 }
 
 
 void Ship::initOptions() {
     this->scheduleUpdate();
-}
-
-void Ship::setOptions() {
+    
+    this->setTag(10);
+    
+    auto shipBody = PhysicsBody::createBox(this->getContentSize(), PhysicsMaterial(0.01, 0.5, 0));
+    shipBody->setContactTestBitmask(0xFFFFFFFF);
+    
+    this->setPhysicsBody(shipBody);
     this->getPhysicsBody()->setVelocityLimit(_maxSpeed);
     this->getPhysicsBody()->setAngularVelocityLimit(_maxAngularSpeed);
+    
+    this->_setUpEvents();
 }
 
 
-void Ship::addEvents() {
+void Ship::_setUpEvents() {
     auto keyboardListener = cocos2d::EventListenerKeyboard::create();
     keyboardListener->onKeyPressed = [=](cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *event) {
-        keys[keyCode] = true;
+        _keys[keyCode] = true;
         auto vel = this->getPhysicsBody()->getVelocity();
         CCLOG("%f %f\n", vel.x, vel.y);
     };
 
     keyboardListener->onKeyReleased = [=](cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *event) {
-        keys.erase(keyCode);
+        _keys.erase(keyCode);
     };
 
     this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(keyboardListener, this);
@@ -47,8 +49,8 @@ Ship::~Ship() {
     this->getEventDispatcher()->removeAllEventListeners();
 }
 
-bool Ship::isKeyPressed(cocos2d::EventKeyboard::KeyCode code) {
-    return keys.find(code) != keys.end();
+bool Ship::_isKeyPressed(cocos2d::EventKeyboard::KeyCode code) {
+    return _keys.find(code) != _keys.end();
 }
 
 void Ship::update(float delta) {
@@ -58,27 +60,28 @@ void Ship::update(float delta) {
     auto rot = this->getRotation();
     rot = fmodf(rot, 360.0f) / 180.0f * (float) M_PI;
 
-    if (isKeyPressed(cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW) ||
-        isKeyPressed(cocos2d::EventKeyboard::KeyCode::KEY_A)) {
+    if (_isKeyPressed(cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW) ||
+        _isKeyPressed(cocos2d::EventKeyboard::KeyCode::KEY_A)) {
         this->getPhysicsBody()->applyImpulse(Vec2(0, _rotatePower), Vec2(54, 24));
     }
-    if (isKeyPressed(cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW) ||
-        isKeyPressed(cocos2d::EventKeyboard::KeyCode::KEY_D)) {
+    if (_isKeyPressed(cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW) ||
+        _isKeyPressed(cocos2d::EventKeyboard::KeyCode::KEY_D)) {
         this->getPhysicsBody()->applyImpulse(Vec2(0, -_rotatePower), Vec2(54, -24));
     }
-    if (isKeyPressed(cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW) ||
-        isKeyPressed(cocos2d::EventKeyboard::KeyCode::KEY_W)) {
+    if (_isKeyPressed(cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW) ||
+        _isKeyPressed(cocos2d::EventKeyboard::KeyCode::KEY_W)) {
         this->getPhysicsBody()->applyImpulse(_forwardPower * Vec2(cos(rot), -sin(rot)));
     }
-    if (isKeyPressed(cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW) ||
-        isKeyPressed(cocos2d::EventKeyboard::KeyCode::KEY_S)) {
+    if (_isKeyPressed(cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW) ||
+        _isKeyPressed(cocos2d::EventKeyboard::KeyCode::KEY_S)) {
         this->getPhysicsBody()->applyImpulse(_forwardPower * Vec2(-cos(rot), sin(rot)));
     }
-    if (isKeyPressed(cocos2d::EventKeyboard::KeyCode::KEY_SPACE)) {
+    if (_isKeyPressed(cocos2d::EventKeyboard::KeyCode::KEY_SPACE)) {
         this->getPhysicsBody()->setAngularVelocity(0);
         this->getPhysicsBody()->setVelocity(Vec2(0, 0));
     }
 }
 
 // Because cocos2d-x requres createScene to be static, we need to make other non-pointer members static
-std::map<cocos2d::EventKeyboard::KeyCode, bool> Ship::keys;
+std::map<cocos2d::EventKeyboard::KeyCode, bool> Ship::_keys;
+
