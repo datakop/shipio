@@ -29,6 +29,7 @@ bool MainLayer::init() {
     _ship->setPhysicsBody(shipBody);
     _ship->setPosition(Point(visibleSize.width / 2 + origin.x,
                              visibleSize.height / 2 + origin.y));
+    _ship->setOptions();
     this->addChild(_ship);
 
     CCLOG("%f %f", _ship->getContentSize().width, _ship->getContentSize().height);
@@ -102,14 +103,14 @@ bool MainLayer::onContactBegin(PhysicsContact &contact) {
     if (nodeA && nodeB) {
         if (nodeA->getTag() == 10) {
             auto ship = static_cast<Ship *>(nodeA);
-            ship->setHealth(ship->getHealth());
+            ship->setHealth(ship->getHealth() - 10);
             nodeB->removeFromParentAndCleanup(true);
             CCLOG("shut");
         }
 
         if (nodeB->getTag() == 10) {
             auto ship = static_cast<Ship *>(nodeB);
-            ship->setHealth(ship->getHealth());
+            ship->setHealth(ship->getHealth() - 10);
             nodeA->removeFromParentAndCleanup(true);
             CCLOG("shut");
         }
