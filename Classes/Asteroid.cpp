@@ -3,7 +3,7 @@
 using namespace cocos2d;
 
 
-Asteroid* Asteroid::create() {
+Asteroid *Asteroid::create() {
     Asteroid *obj = new Asteroid();
     if (obj->initWithFile("asteroid.png")) {
         obj->autorelease();
@@ -17,12 +17,12 @@ Asteroid* Asteroid::create() {
 
 bool Asteroid::initOptions() {
     CCLOG("%f", this->getContentSize().width);
-    
-    auto body = PhysicsBody::createBox(Size(this->getContentSize().width-30,
-                                            this->getContentSize().height-30),
+
+    auto body = PhysicsBody::createBox(Size(this->getContentSize().width - 30,
+                                            this->getContentSize().height - 30),
                                        PhysicsMaterial(1, 0.5, 0));
     body->setContactTestBitmask(0x12);
     this->setPhysicsBody(body);
-    
+
     return true;
 }

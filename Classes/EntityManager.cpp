@@ -1,22 +1,21 @@
 #include "EntityManager.h"
 
 
-
-Asteroid* EntityManager::createAsteroidAtPosition(cocos2d::Vec2 pos) {
+Asteroid *EntityManager::createAsteroidAtPosition(cocos2d::Vec2 pos) {
     auto asteroid = Asteroid::create();
     asteroid->setPosition(pos);
-    
+
     _entities.push_back(asteroid);
-    
+
     return asteroid;
 }
 
-Ship* EntityManager::createShipAtPosition(cocos2d::Vec2 pos) {
+Ship *EntityManager::createShipAtPosition(cocos2d::Vec2 pos) {
     auto ship = Ship::create();
     ship->setPosition(pos);
-    
+
     _entities.push_back(ship);
-    
+
     return ship;
 }
 
@@ -35,4 +34,6 @@ void EntityManager::createBulletAtPosition(cocos2d::Vec2 pos) {
 }
 
 
-EntityManager::~EntityManager() {}
+EntityManager::~EntityManager() {
+
+}

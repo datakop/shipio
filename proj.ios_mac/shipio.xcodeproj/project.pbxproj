@@ -62,6 +62,8 @@
 		95644A5D1C130F530096C63A /* MainLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95644A581C130F530096C63A /* MainLayer.cpp */; };
 		95644A5E1C130F530096C63A /* Ship.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95644A5A1C130F530096C63A /* Ship.cpp */; };
 		95644A5F1C130F530096C63A /* Ship.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95644A5A1C130F530096C63A /* Ship.cpp */; };
+		958339CE1C21E82C00298B63 /* MapGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 958339CC1C21E82C00298B63 /* MapGenerator.cpp */; };
+		958339CF1C21E82C00298B63 /* MapGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 958339CC1C21E82C00298B63 /* MapGenerator.cpp */; };
 		95C0ED6D1C11C2050049645C /* shipio.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C0ED6B1C11C2050049645C /* shipio.png */; };
 		95C0ED6E1C11C2050049645C /* shipio.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C0ED6B1C11C2050049645C /* shipio.png */; };
 		95C0ED6F1C11C2050049645C /* stones.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 95C0ED6C1C11C2050049645C /* stones.jpg */; };
@@ -80,6 +82,8 @@
 		95DF64E01C21BAD5006AC679 /* Asteroid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95DF64DD1C21BAD5006AC679 /* Asteroid.cpp */; };
 		95DF64E31C21BF72006AC679 /* BackgroudLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95DF64E11C21BF72006AC679 /* BackgroudLayer.cpp */; };
 		95DF64E41C21BF72006AC679 /* BackgroudLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95DF64E11C21BF72006AC679 /* BackgroudLayer.cpp */; };
+		95DF64E71C21DCE1006AC679 /* KeyboardInputComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95DF64E51C21DCE1006AC679 /* KeyboardInputComponent.cpp */; };
+		95DF64E81C21DCE1006AC679 /* KeyboardInputComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95DF64E51C21DCE1006AC679 /* KeyboardInputComponent.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -176,6 +180,8 @@
 		95644A591C130F530096C63A /* MainLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainLayer.h; sourceTree = "<group>"; };
 		95644A5A1C130F530096C63A /* Ship.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ship.cpp; sourceTree = "<group>"; };
 		95644A5B1C130F530096C63A /* Ship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ship.h; sourceTree = "<group>"; };
+		958339CC1C21E82C00298B63 /* MapGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MapGenerator.cpp; path = MapGenerator/MapGenerator.cpp; sourceTree = "<group>"; };
+		958339CD1C21E82C00298B63 /* MapGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapGenerator.h; path = MapGenerator/MapGenerator.h; sourceTree = "<group>"; };
 		95C0ED6B1C11C2050049645C /* shipio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shipio.png; sourceTree = "<group>"; };
 		95C0ED6C1C11C2050049645C /* stones.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = stones.jpg; sourceTree = "<group>"; };
 		95C0ED741C11C3B70049645C /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball.png; sourceTree = "<group>"; };
@@ -188,6 +194,8 @@
 		95DF64DE1C21BAD5006AC679 /* Asteroid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Asteroid.h; sourceTree = "<group>"; };
 		95DF64E11C21BF72006AC679 /* BackgroudLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BackgroudLayer.cpp; sourceTree = "<group>"; };
 		95DF64E21C21BF72006AC679 /* BackgroudLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroudLayer.h; sourceTree = "<group>"; };
+		95DF64E51C21DCE1006AC679 /* KeyboardInputComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KeyboardInputComponent.cpp; sourceTree = "<group>"; };
+		95DF64E61C21DCE1006AC679 /* KeyboardInputComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardInputComponent.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -337,6 +345,7 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				958339CB1C21E81700298B63 /* MapGenerator */,
 				95644A581C130F530096C63A /* MainLayer.cpp */,
 				95644A591C130F530096C63A /* MainLayer.h */,
 				95644A5A1C130F530096C63A /* Ship.cpp */,
@@ -349,6 +358,8 @@
 				95DF64DE1C21BAD5006AC679 /* Asteroid.h */,
 				95DF64E11C21BF72006AC679 /* BackgroudLayer.cpp */,
 				95DF64E21C21BF72006AC679 /* BackgroudLayer.h */,
+				95DF64E51C21DCE1006AC679 /* KeyboardInputComponent.cpp */,
+				95DF64E61C21DCE1006AC679 /* KeyboardInputComponent.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -400,6 +411,15 @@
 			name = Icons;
 			path = ios;
 			sourceTree = SOURCE_ROOT;
+		};
+		958339CB1C21E81700298B63 /* MapGenerator */ = {
+			isa = PBXGroup;
+			children = (
+				958339CC1C21E82C00298B63 /* MapGenerator.cpp */,
+				958339CD1C21E82C00298B63 /* MapGenerator.h */,
+			);
+			name = MapGenerator;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -556,9 +576,11 @@
 			files = (
 				95DF64DF1C21BAD5006AC679 /* Asteroid.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				958339CE1C21E82C00298B63 /* MapGenerator.cpp in Sources */,
 				95644A5C1C130F530096C63A /* MainLayer.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				95644A5E1C130F530096C63A /* Ship.cpp in Sources */,
+				95DF64E71C21DCE1006AC679 /* KeyboardInputComponent.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				95DF64DB1C21BA1A006AC679 /* EntityManager.cpp in Sources */,
 				95DF64E31C21BF72006AC679 /* BackgroudLayer.cpp in Sources */,
@@ -573,10 +595,12 @@
 				95644A5F1C130F530096C63A /* Ship.cpp in Sources */,
 				95644A5D1C130F530096C63A /* MainLayer.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				958339CF1C21E82C00298B63 /* MapGenerator.cpp in Sources */,
 				95DF64DC1C21BA1A006AC679 /* EntityManager.cpp in Sources */,
 				95DF64E01C21BAD5006AC679 /* Asteroid.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				95DF64E41C21BF72006AC679 /* BackgroudLayer.cpp in Sources */,
+				95DF64E81C21DCE1006AC679 /* KeyboardInputComponent.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

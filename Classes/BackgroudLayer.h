@@ -6,7 +6,7 @@
 class BackgroudLayer : public cocos2d::Layer {
 public:
     CREATE_FUNC(BackgroudLayer);
-    
+
     bool init();
 };
 

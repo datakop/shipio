@@ -1,11 +1,3 @@
-//
-//  Asteroid.h
-//  shipio
-//
-//  Created by Bors Kopin on 16.12.15.
-//
-//
-
 #ifndef __shipio__Asteroid__
 #define __shipio__Asteroid__
 

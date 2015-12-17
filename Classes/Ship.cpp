@@ -16,16 +16,16 @@ Ship *Ship::create() {
 
 void Ship::initOptions() {
     this->scheduleUpdate();
-    
+
     this->setTag(10);
-    
+
     auto shipBody = PhysicsBody::createBox(this->getContentSize(), PhysicsMaterial(0.01, 0.5, 0));
     shipBody->setContactTestBitmask(0xFFFFFFFF);
-    
+
     this->setPhysicsBody(shipBody);
     this->getPhysicsBody()->setVelocityLimit(_maxSpeed);
     this->getPhysicsBody()->setAngularVelocityLimit(_maxAngularSpeed);
-    
+
     this->_setUpEvents();
 }
 

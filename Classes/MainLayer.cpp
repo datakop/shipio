@@ -1,5 +1,6 @@
 #include "MainLayer.h"
 #include "EntityManager.h"
+#include "MapGenerator/MapGenerator.h"
 
 using namespace cocos2d;
 
@@ -12,7 +13,7 @@ bool MainLayer::init() {
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
-    
+
 
     auto edgeBody = PhysicsBody::createEdgeBox(visibleSize, PHYSICSBODY_MATERIAL_DEFAULT, 3);
 
@@ -21,28 +22,36 @@ bool MainLayer::init() {
                                 visibleSize.height / 2 + origin.y));
     edgeNode->setPhysicsBody(edgeBody);
     this->addChild(edgeNode);
-    
+
     this->_entityManager = new EntityManager();
-    
+
     this->_ship = _entityManager->createShipAtPosition(Point(visibleSize.width / 2 + origin.x,
                                                              visibleSize.height / 2 + origin.y));
     this->addChild(_ship);
 
-    
 
     this->addChild(_entityManager->createAsteroidAtPosition(Point(visibleSize.width / 2 + origin.x + 30,
                                                                   visibleSize.height / 2 + origin.y + 100)));
-    
+
     this->addChild(_entityManager->createAsteroidAtPosition(Point(visibleSize.width / 2 + origin.x - 30,
                                                                   visibleSize.height / 2 + origin.y - 200)));
-    
+
     this->addChild(_entityManager->createAsteroidAtPosition(Point(visibleSize.width / 2 + origin.x + 30,
                                                                   visibleSize.height / 2 + origin.y - 100)));
-    
+
 
     auto contactListener = EventListenerPhysicsContact::create();
     contactListener->onContactBegin = CC_CALLBACK_1(MainLayer::onContactBegin, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(contactListener, this);
+
+
+    auto m = new MapGenerator();
+
+    this->_dotMap = m->main(visibleSize, _ship->getContentSize());
+    CCLOG("%f %f", _dotMap[0].first, _dotMap[0].second);
+
+    delete m;
+
 
     return true;
 }
@@ -50,6 +59,21 @@ bool MainLayer::init() {
 void MainLayer::update(float delta) {
     if (_drawNode) removeChild(_drawNode);
     _drawNode = DrawNode::create();
+
+
+    for (int i = 2; i < _dotMap.size() - 1; ++i) {
+        _drawNode->drawDot(Vec2(_dotMap[i].first, _dotMap[i].second), 3, Color4F(1.0f, 1.0f, 1.0f, 1.0f));
+
+        _drawNode->drawLine(Vec2(_dotMap[i - 1].first, _dotMap[i - 1].second),
+                            Vec2(_dotMap[i].first, _dotMap[i].second),
+                            Color4F(1.0f, 1.0f, 1.0f, 1.0f));
+
+//        _drawNode->drawQuadBezier(Vec2(_dotMap[i-1].first, _dotMap[i-1].second),
+//                                  Vec2(_dotMap[i].first, _dotMap[i].second),
+//                                  Vec2(_dotMap[i + 1].first, _dotMap[i].second),
+//                                  64, Color4F(1.0f, 0.0f, 1.0f, 1.0f));
+    }
+
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
