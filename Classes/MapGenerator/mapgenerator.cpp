@@ -8,7 +8,7 @@ vector<pair<double, double> >  MapGenerator::main(const cocos2d::Size screenSize
 
     this->screen_weight = screenSize.width - 100;
     this->screen_height = screenSize.height - 100;
-    
+
     this->ship_x = shipSize.width;
     this->ship_y = shipSize.height;
 

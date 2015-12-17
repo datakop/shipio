@@ -39,7 +39,7 @@ private:
 
     double square_y = new_screen_height / height;
     double square_x = new_screen_weight / weight;
-    
+
     vector<vector<int> > A;
     vector<vector<int> > used;
 

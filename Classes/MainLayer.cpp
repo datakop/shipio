@@ -1,5 +1,4 @@
 #include "MainLayer.h"
-#include "EntityManager.h"
 #include "MapGenerator/MapGenerator.h"
 
 using namespace cocos2d;
