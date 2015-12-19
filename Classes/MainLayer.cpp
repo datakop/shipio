@@ -60,9 +60,10 @@ void MainLayer::update(float delta) {
     _drawNode = DrawNode::create();
 
 
-    for (int i = 2; i < _dotMap.size() - 1; ++i) {
+    for (int i = 1; i < _dotMap.size(); ++i) {
+        //CCLOG("ALL GOOD %lf %lf\n", _dotMap[i].first, _dotMap[i].second);
         _drawNode->drawDot(Vec2(_dotMap[i].first, _dotMap[i].second), 3, Color4F(1.0f, 1.0f, 1.0f, 1.0f));
-
+        //CCLOG("ALL GOOD2 %lf %lf %lf %lf\n", _dotMap[i - 1].first, _dotMap[i - 1].second, _dotMap[i].first, _dotMap[i].second);
         _drawNode->drawLine(Vec2(_dotMap[i - 1].first, _dotMap[i - 1].second),
                             Vec2(_dotMap[i].first, _dotMap[i].second),
                             Color4F(1.0f, 1.0f, 1.0f, 1.0f));

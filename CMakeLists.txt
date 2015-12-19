@@ -139,6 +139,7 @@ endif( WIN32 )
 
 file(GLOB CLSS_SRC
   Classes/*.cpp
+  Classes/*/*.cpp
 )
 
 set(GAME_SRC
@@ -148,6 +149,7 @@ set(GAME_SRC
 
 file(GLOB CLSS_HEADERS
   Classes/*.h
+  Classes/*/*.h
 )
 
 set(GAME_HEADERS

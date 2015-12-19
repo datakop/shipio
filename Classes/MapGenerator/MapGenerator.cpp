@@ -6,21 +6,34 @@ using namespace std;
 vector<pair<double, double> >  MapGenerator::main(const cocos2d::Size screenSize,
                                                   const cocos2d::Size shipSize) {
 
-    this->screen_weight = screenSize.width - 100;
-    this->screen_height = screenSize.height - 100;
 
-    this->ship_x = shipSize.width;
-    this->ship_y = shipSize.height;
+    screen_height = screenSize.height;
+    screen_width = screenSize.width;
+    ship_x = max(shipSize.width, shipSize.height);
+    ship_y = max(shipSize.width, shipSize.height);
 
-    //printf("%d %d %lf %lf", height, weight, new_screen_height, new_screen_weight);
-    //exit(0);
-    //printf("%lf %lf %lf %lf", delta_x, delta_y, square_x, square_y);
-    //exit(0);
+
+    height = (int) (screen_height / ship_y);
+    width = (int) (screen_width / ship_x);
+
+    new_screen_height = ship_y * height;
+    new_screen_width = ship_x * width;
+
+    delta_y = new_screen_height / height / 2.0;
+    delta_x = new_screen_width / width / 2.0;
+
+    square_y = new_screen_height / height;
+    square_x = new_screen_width / width;
+
+
+
+    CCLOG("WIDTH AND WIDTH %d %d", width, height);
+
     A.resize(height);
     used.resize(height);
     for (int i = 0; i < height; i++) {
-        A[i].resize(weight, 0);
-        used[i].resize(weight);
+        A[i].resize(width, 0);
+        used[i].resize(width);
     }
     srand(time(NULL));
     int pair_side = get_rand(1000) % 2;
@@ -30,11 +43,11 @@ vector<pair<double, double> >  MapGenerator::main(const cocos2d::Size screenSize
     {
         //struct point start_point(0, );
         start_point.x = 0;
-        start_point.y = get_rand(weight);
+        start_point.y = get_rand(width);
 
         //struct point end_point(weight - 1, );
         end_point.x = height - 1;
-        end_point.y = get_rand(weight);
+        end_point.y = get_rand(width);
     }
     else if (pair_side == 1) // get bottom
     {
@@ -44,39 +57,65 @@ vector<pair<double, double> >  MapGenerator::main(const cocos2d::Size screenSize
         start_point.y = 0;
 
         end_point.x = get_rand(height);
-        end_point.y = weight - 1;
+        end_point.y = width - 1;
     }
-    //print_point(start_point);
-    //print_point(end_point);
+    print_point(start_point);
+    print_point(end_point);
     //exit(0);
     vector<vector<int> > answer;
     vector<vector<int> > now;
     vector<struct point> seq;
+    vector <struct point> old_seq;
     now.resize(height);
     for (int i = 0; i < height; i++)
-        now[i].resize(weight, 0);
+        now[i].resize(width, 0);
     //print_result(now);
     int max_depth = 0;
-    while (max_depth < 10) {
+    while (max_depth < 45) {
         get_zeros(now);
         pair<vector<vector<int> >, pair<vector<struct point>, int> > A;
         vector<struct point> new_seq;
+        new_seq.push_back(start_point);
         A = dfs(start_point, end_point, start_point, now, 0, new_seq);
         //printf("ALL GOOD");
         //print_result(A.f);
         if (A.s.s > max_depth) {
             max_depth = A.s.s;
             answer = A.f;
-            seq = A.s.f;
+            seq =  convert_vector(A.s.f);
+            old_seq = A.s.f;
         }
     }
     print_vect(seq);
+    //print_vect(old_seq);
     printf("\n\n");
     //print_result(answer);
     vector<pair<double, double> > B;
     for (int i = 0; i < seq.size(); i++)
         B.push_back(get_square_center_coordinates(seq[i]));
     print_vect_double(B);
+
+    if (pair_side == 0)
+        type = 3;
+    else if(pair_side == 1)
+        type = 1;
+    vector <pair <float, float> > first_line;
+    vector <pair<float, float> > second_line;
+    for (int i = 0; i < seq.size(); i++)
+    {
+        if (first_line.size() == 0) {
+            if (type == 1)
+            {
+               // first_line.push_back();
+                //second_line.push_back();
+            }
+            else if (type == 3)
+            {
+                //first_line.push_back();
+                //second_line.push_back();
+            }
+        }
+    }
 
     return B;
 }
@@ -89,8 +128,8 @@ int MapGenerator::get_rand(int range) {
 
 pair<double, double>
 MapGenerator::get_square_center_coordinates(struct point A) {
-    double x = (double) A.y;
-    double y = (double) (height - A.x);
+    double x = (double) A.x;
+    double y = (double) A.y;
     return mp(x * square_x + delta_x, y * square_y + delta_y);
 }
 
@@ -117,7 +156,7 @@ MapGenerator::bfs(struct point now_point, struct point end_point, vector<vector<
             S.push_front(point(x, y - 1));
             vect[x][y - 1] = 1;
         }
-        if (y + 1 < weight && !vect[x][y + 1]) {
+        if (y + 1 < width && !vect[x][y + 1]) {
             S.push_front(point(x, y + 1));
             vect[x][y + 1] = 1;
         }
@@ -148,7 +187,7 @@ MapGenerator::dfs(struct point start_point,
         possible_points.push_back(point(x + 1, y));
     if (x - 1 >= 0 && now_state_map[x - 1][y] == 0 && bfs(point(x - 1, y), end_point, now_state_map))
         possible_points.push_back(point(x - 1, y));
-    if (y + 1 < weight && now_state_map[x][y + 1] == 0 && bfs(point(x, y + 1), end_point, now_state_map))
+    if (y + 1 < width && now_state_map[x][y + 1] == 0 && bfs(point(x, y + 1), end_point, now_state_map))
         possible_points.push_back(point(x, y + 1));
     if (y - 1 >= 0 && now_state_map[x][y - 1] == 0 && bfs(point(x, y - 1), end_point, now_state_map))
         possible_points.push_back(point(x, y - 1));
@@ -193,4 +232,54 @@ void MapGenerator::print_vect_double(vector<pair<double, double> > A) {
 
 void MapGenerator::print_point(struct point p) {
     printf("%d %d\n", p.x, p.y);
+}
+
+vector<struct point > MapGenerator::convert_vector(vector<point> vector1) {
+    vector <struct point > result;
+    for (int i = 0; i < vector1.size(); i++)
+    {
+        struct point A(vector1[i].y, height - vector1[i].x-1);
+        result.push_back(A);
+    }
+    return result;
+}
+
+int MapGenerator::now_type(struct point A, struct point B) {
+    int x1 = A.x;
+    int y1 = A.y;
+    int x2 = B.x;
+    int y2 = B.y;
+    if (x1 == x2)
+    {
+        if (y2 > y1)
+            return 4;
+        else
+            return 3;
+    }
+    else if(y1 == y2)
+    {
+        if (x2 > x1)
+            return 1;
+        else
+            return 2;
+    }
+}
+
+pair<float, float> MapGenerator::get_coordinte(int number, int x, int y) {
+    if (number == 1)
+    {
+        return mp(x * square_x, y * square_y);
+    }
+    else if (number == 2)
+    {
+        return mp(x * square_x, y * square_y + square_y);
+    }
+    else if (number == 3)
+    {
+        return mp(x * square_x + square_x, y * square_y + square_y);
+    }
+    else if (number == 4)
+    {
+        return mp(x * square_x + square_x, y * square_y);
+    }
 }
