@@ -2,7 +2,8 @@
 #define SHIPIO_MAINLAYER_H
 
 #include <vector>
-
+#include <cstdio>
+#include <cstdlib>
 #include "cocos2d.h"
 #include "Ship.h"
 #include "EntityManager.h"
@@ -27,7 +28,8 @@ private:
     Ship *_ship;
     cocos2d::DrawNode *_drawNode;
     float _angle;
-
+    std::pair <double, double> start;
+    std::pair <double, double> end;
     EntityManager *_entityManager;
 
     std::vector<std::pair<double, double> > _dotMap;

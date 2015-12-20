@@ -3,7 +3,8 @@
 
 using namespace std;
 
-vector<pair<double, double> >  MapGenerator::main(const cocos2d::Size screenSize,
+pair <vector<pair<double, double> >, pair <pair<double, double>, pair<double, double> > >
+                                    MapGenerator::main(const cocos2d::Size screenSize,
                                                   const cocos2d::Size shipSize) {
 
 
@@ -88,36 +89,99 @@ vector<pair<double, double> >  MapGenerator::main(const cocos2d::Size screenSize
     }
     print_vect(seq);
     //print_vect(old_seq);
-    printf("\n\n");
+    //printf("\n\n");
     //print_result(answer);
-    vector<pair<double, double> > B;
-    for (int i = 0; i < seq.size(); i++)
-        B.push_back(get_square_center_coordinates(seq[i]));
-    print_vect_double(B);
-
-    if (pair_side == 0)
-        type = 3;
-    else if(pair_side == 1)
-        type = 1;
-    vector <pair <float, float> > first_line;
-    vector <pair<float, float> > second_line;
+    //vector<pair<double, double> > B;
+    //for (int i = 0; i < seq.size(); i++)
+    //    B.push_back(get_square_center_coordinates(seq[i]));
+    //print_vect_double(B);
+    vector <pair <double, double> > res;
+    int prev_type = type;
     for (int i = 0; i < seq.size(); i++)
     {
-        if (first_line.size() == 0) {
-            if (type == 1)
+        if (i == 0)
+        {
+            type = now_type(seq[i], seq[i + 1]);
+            if (type != 1)
             {
-               // first_line.push_back();
-                //second_line.push_back();
+                res.push_back(get_coordinte(3, seq[i].x, seq[i].y));
+                res.push_back(get_coordinte(4, seq[i].x, seq[i].y));
             }
-            else if (type == 3)
+            if (type != 3)
             {
-                //first_line.push_back();
-                //second_line.push_back();
+                res.push_back(get_coordinte(1, seq[i].x, seq[i].y));
+                res.push_back(get_coordinte(4, seq[i].x, seq[i].y));
+            }
+            if (type != 2)
+            {
+                res.push_back(get_coordinte(1, seq[i].x, seq[i].y));
+                res.push_back(get_coordinte(2, seq[i].x, seq[i].y));
+            }
+            if (type != 4)
+            {
+                res.push_back(get_coordinte(2, seq[i].x, seq[i].y));
+                res.push_back(get_coordinte(3, seq[i].x, seq[i].y));
+            }
+        }
+        else if (i != seq.size() - 1)
+        {
+            int t1 = now_type(seq[i - 1], seq[i]);
+            int t2 = now_type(seq[i], seq[i + 1]);
+            if (t1 != 1 && t2 != 2)
+            {
+                res.push_back(get_coordinte(1, seq[i].x, seq[i].y));
+                res.push_back(get_coordinte(2, seq[i].x, seq[i].y));
+            }
+
+            if (t1 != 3 && t2 != 4)
+            {
+                res.push_back(get_coordinte(2, seq[i].x, seq[i].y));
+                res.push_back(get_coordinte(3, seq[i].x, seq[i].y));
+            }
+
+            if (t1 != 2 && t2 != 1)
+            {
+                res.push_back(get_coordinte(3, seq[i].x, seq[i].y));
+                res.push_back(get_coordinte(4, seq[i].x, seq[i].y));
+            }
+
+            if (t1 != 4 && t2 != 3)
+            {
+                res.push_back(get_coordinte(4, seq[i].x, seq[i].y));
+                res.push_back(get_coordinte(1, seq[i].x, seq[i].y));
+            }
+        }
+        else
+        {
+            type = now_type(seq[i - 1], seq[i]);
+            if (type != 1)
+            {
+                res.push_back(get_coordinte(1, seq[i].x, seq[i].y));
+                res.push_back(get_coordinte(2, seq[i].x, seq[i].y));
+            }
+
+            if (type != 3)
+            {
+                res.push_back(get_coordinte(2, seq[i].x, seq[i].y));
+                res.push_back(get_coordinte(3, seq[i].x, seq[i].y));
+            }
+
+            if (type != 2)
+            {
+                res.push_back(get_coordinte(3, seq[i].x, seq[i].y));
+                res.push_back(get_coordinte(4, seq[i].x, seq[i].y));
+            }
+
+            if (type != 4)
+            {
+                res.push_back(get_coordinte(4, seq[i].x, seq[i].y));
+                res.push_back(get_coordinte(1, seq[i].x, seq[i].y));
             }
         }
     }
 
-    return B;
+
+    return mp(res, mp(get_square_center_coordinates(seq[0]), get_square_center_coordinates(seq[seq.size()-1])));
 }
 
 

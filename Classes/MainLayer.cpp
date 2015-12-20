@@ -45,8 +45,11 @@ bool MainLayer::init() {
 
 
     auto m = new MapGenerator();
-
-    this->_dotMap = m->main(visibleSize, _ship->getContentSize());
+    pair <vector<pair<double, double> >, pair <pair<double, double>, pair<double, double> > > m_c_c;
+    m_c_c = m->main(visibleSize, _ship->getContentSize());
+    this->_dotMap = m_c_c.first;
+    this->start = m_c_c.second.first;
+    this->end = m_c_c.second.second;
     CCLOG("%f %f", _dotMap[0].first, _dotMap[0].second);
 
     delete m;
@@ -60,7 +63,7 @@ void MainLayer::update(float delta) {
     _drawNode = DrawNode::create();
 
 
-    for (int i = 1; i < _dotMap.size(); ++i) {
+    for (int i = 1; i < _dotMap.size(); i += 2) {
         //CCLOG("ALL GOOD %lf %lf\n", _dotMap[i].first, _dotMap[i].second);
         _drawNode->drawDot(Vec2(_dotMap[i].first, _dotMap[i].second), 3, Color4F(1.0f, 1.0f, 1.0f, 1.0f));
         //CCLOG("ALL GOOD2 %lf %lf %lf %lf\n", _dotMap[i - 1].first, _dotMap[i - 1].second, _dotMap[i].first, _dotMap[i].second);

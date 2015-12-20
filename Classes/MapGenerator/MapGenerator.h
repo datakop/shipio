@@ -23,7 +23,7 @@ struct point;
 
 class MapGenerator {
 public:
-    vector<pair<double, double> > main(const cocos2d::Size screenSize,
+    pair <vector<pair<double, double> >, pair <pair<double, double>, pair<double, double> > >  main(const cocos2d::Size screenSize,
                                        const cocos2d::Size shipSize);
 
 private:
