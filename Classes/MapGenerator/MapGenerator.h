@@ -23,22 +23,23 @@ struct point;
 
 class MapGenerator {
 public:
-    vector<pair<double, double> > main(const cocos2d::Size screenSize,
-                                       const cocos2d::Size shipSize);
+    pair <vector<pair<double, double> >, pair <pair<double, double>, pair<double, double> > >  main(const cocos2d::Size screenSize);
 
 private:
-    double screen_height = 780.0, screen_weight = 1200.0;
-    double ship_x = 50, ship_y = 50;
-    int height = screen_height / ship_y - 1;
-    int weight = screen_weight / ship_x - 1;
-    double new_screen_height = height * ship_y;
-    double new_screen_weight = weight * ship_x;
+    double screen_height, screen_width;
+    double ship_x = 120, ship_y = 120;
+    int height;
+    int width;
 
-    double delta_y = new_screen_height / height / 2;
-    double delta_x = new_screen_weight / weight / 2;
+    double new_screen_height;
+    double new_screen_width;
 
-    double square_y = new_screen_height / height;
-    double square_x = new_screen_weight / weight;
+    double delta_y;
+    double delta_x;
+
+    double square_y;
+    double square_x;
+    int type;
 
     vector<vector<int> > A;
     vector<vector<int> > used;
@@ -68,6 +69,9 @@ private:
     int get_rand(int range);
 
     void get_zeros(vector<vector<int> > &A);
+    vector <struct point > convert_vector(vector <struct point>);
+    int now_type(struct point A, struct point B);
+    pair <float, float> get_coordinte(int number, int x, int y);
 };
 
 

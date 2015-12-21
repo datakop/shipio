@@ -5,11 +5,14 @@
 
 #include "Ship.h"
 #include "Asteroid.h"
+#include "EndPoint.h"
 
 
 class EntityManager {
 public:
     Asteroid *createAsteroidAtPosition(cocos2d::Vec2 pos);
+
+    EndPoint *createEndPointAtPosition(cocos2d::Vec2 pos);
 
     Ship *createShipAtPosition(cocos2d::Vec2 pos);
 
