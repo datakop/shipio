@@ -24,35 +24,36 @@ bool MainLayer::init() {
 
     this->_entityManager = new EntityManager();
 
-    this->_ship = _entityManager->createShipAtPosition(Point(visibleSize.width / 2 + origin.x,
-                                                             visibleSize.height / 2 + origin.y));
-    this->addChild(_ship);
-
-
-    this->addChild(_entityManager->createAsteroidAtPosition(Point(visibleSize.width / 2 + origin.x + 30,
-                                                                  visibleSize.height / 2 + origin.y + 100)));
-
-    this->addChild(_entityManager->createAsteroidAtPosition(Point(visibleSize.width / 2 + origin.x - 30,
-                                                                  visibleSize.height / 2 + origin.y - 200)));
-
-    this->addChild(_entityManager->createAsteroidAtPosition(Point(visibleSize.width / 2 + origin.x + 30,
-                                                                  visibleSize.height / 2 + origin.y - 100)));
-
-
-    auto contactListener = EventListenerPhysicsContact::create();
-    contactListener->onContactBegin = CC_CALLBACK_1(MainLayer::onContactBegin, this);
-    _eventDispatcher->addEventListenerWithSceneGraphPriority(contactListener, this);
-
-
     auto m = new MapGenerator();
     pair <vector<pair<double, double> >, pair <pair<double, double>, pair<double, double> > > m_c_c;
-    m_c_c = m->main(visibleSize, _ship->getContentSize());
+    m_c_c = m->main(visibleSize);
     this->_dotMap = m_c_c.first;
     this->start = m_c_c.second.first;
     this->end = m_c_c.second.second;
     CCLOG("%f %f", _dotMap[0].first, _dotMap[0].second);
 
     delete m;
+
+    this->_ship = _entityManager->createShipAtPosition(Point((float)(start.first), (float)(start.second)));
+    this->addChild(_ship);
+
+    this->_EndPoint = _entityManager->createEndPointAtPosition(Point((float)(end.first + 7), (float)(end.second + 7)));
+    this->addChild(_EndPoint);
+
+    //this->addChild(_entityManager->createAsteroidAtPosition(Point(visibleSize.width / 2 + origin.x + 30,
+     //                                                             visibleSize.height / 2 + origin.y + 100)));
+
+    //this->addChild(_entityManager->createAsteroidAtPosition(Point(visibleSize.width / 2 + origin.x - 30,
+     //                                                             visibleSize.height / 2 + origin.y - 200)));
+
+    //this->addChild(_entityManager->createAsteroidAtPosition(Point(visibleSize.width / 2 + origin.x + 30,
+      //                                                            visibleSize.height / 2 + origin.y - 100)));
+
+
+    auto contactListener = EventListenerPhysicsContact::create();
+    contactListener->onContactBegin = CC_CALLBACK_1(MainLayer::onContactBegin, this);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(contactListener, this);
+
 
 
     return true;

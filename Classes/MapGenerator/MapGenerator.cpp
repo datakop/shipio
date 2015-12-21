@@ -4,14 +4,13 @@
 using namespace std;
 
 pair <vector<pair<double, double> >, pair <pair<double, double>, pair<double, double> > >
-                                    MapGenerator::main(const cocos2d::Size screenSize,
-                                                  const cocos2d::Size shipSize) {
+                                    MapGenerator::main(const cocos2d::Size screenSize) {
 
 
     screen_height = screenSize.height;
     screen_width = screenSize.width;
-    ship_x = max(shipSize.width, shipSize.height);
-    ship_y = max(shipSize.width, shipSize.height);
+    ship_x = max(ship_x, ship_y);
+    ship_y = max(ship_x, ship_y);
 
 
     height = (int) (screen_height / ship_y);
@@ -42,18 +41,14 @@ pair <vector<pair<double, double> >, pair <pair<double, double>, pair<double, do
     struct point end_point(0, 0);
     if (pair_side == 0) // get top
     {
-        //struct point start_point(0, );
         start_point.x = 0;
         start_point.y = get_rand(width);
 
-        //struct point end_point(weight - 1, );
         end_point.x = height - 1;
         end_point.y = get_rand(width);
     }
     else if (pair_side == 1) // get bottom
     {
-        //struct point start_point(, 0);
-        //struct point end_point(, weight - 1);
         start_point.x = get_rand(height);
         start_point.y = 0;
 
@@ -62,7 +57,6 @@ pair <vector<pair<double, double> >, pair <pair<double, double>, pair<double, do
     }
     print_point(start_point);
     print_point(end_point);
-    //exit(0);
     vector<vector<int> > answer;
     vector<vector<int> > now;
     vector<struct point> seq;
@@ -70,16 +64,13 @@ pair <vector<pair<double, double> >, pair <pair<double, double>, pair<double, do
     now.resize(height);
     for (int i = 0; i < height; i++)
         now[i].resize(width, 0);
-    //print_result(now);
     int max_depth = 0;
-    while (max_depth < 45) {
+    while (max_depth < 40) {
         get_zeros(now);
         pair<vector<vector<int> >, pair<vector<struct point>, int> > A;
         vector<struct point> new_seq;
         new_seq.push_back(start_point);
         A = dfs(start_point, end_point, start_point, now, 0, new_seq);
-        //printf("ALL GOOD");
-        //print_result(A.f);
         if (A.s.s > max_depth) {
             max_depth = A.s.s;
             answer = A.f;
@@ -88,15 +79,8 @@ pair <vector<pair<double, double> >, pair <pair<double, double>, pair<double, do
         }
     }
     print_vect(seq);
-    //print_vect(old_seq);
-    //printf("\n\n");
-    //print_result(answer);
-    //vector<pair<double, double> > B;
-    //for (int i = 0; i < seq.size(); i++)
-    //    B.push_back(get_square_center_coordinates(seq[i]));
-    //print_vect_double(B);
+
     vector <pair <double, double> > res;
-    int prev_type = type;
     for (int i = 0; i < seq.size(); i++)
     {
         if (i == 0)
@@ -180,6 +164,11 @@ pair <vector<pair<double, double> >, pair <pair<double, double>, pair<double, do
         }
     }
 
+    for (int i = 0; i < res.size(); i++)
+    {
+        res[i].second += 7;
+        res[i].first += 7;
+    }
 
     return mp(res, mp(get_square_center_coordinates(seq[0]), get_square_center_coordinates(seq[seq.size()-1])));
 }
@@ -237,10 +226,6 @@ MapGenerator::dfs(struct point start_point,
                   int depth,
                   vector<struct point> answer) {
     now_state_map[now_point.x][now_point.y] = depth + 1;
-    //print_result(now_state_map);
-    //print_point(start_point);
-    //print_point(end_point);
-    //print_point(now_point);
     if ((now_point.x == end_point.x) && (now_point.y == end_point.y))
         return mp(now_state_map, mp(answer, depth));
 

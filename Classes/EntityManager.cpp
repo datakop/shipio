@@ -19,6 +19,13 @@ Ship *EntityManager::createShipAtPosition(cocos2d::Vec2 pos) {
     return ship;
 }
 
+EndPoint *EntityManager::createEndPointAtPosition(cocos2d::Vec2 pos) {
+    auto EndPoint = EndPoint::create();
+    EndPoint->setPosition(pos);
+    _entities.push_back(EndPoint);
+    return EndPoint;
+}
+
 void EntityManager::createBulletAtPosition(cocos2d::Vec2 pos) {
 //    auto bullet = cocos2d::PhysicsBody::createCircle(4, PhysicsMaterial(0.001, 1, 0));
 //    bullet->setContactTestBitmask(0xFFFFFFFF);
