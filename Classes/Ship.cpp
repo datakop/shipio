@@ -29,6 +29,24 @@ void Ship::initOptions() {
     this->_setUpEvents();
 }
 
+void Ship::_fire(float rot) {
+
+    cocos2d::Scene *scene = cocos2d::Director::getInstance()->getRunningScene();
+    auto layer = scene->getChildByTag(100);
+    
+    auto bulletSprite = Sprite::create();
+    auto bullet = PhysicsBody::createCircle(4, PhysicsMaterial(0.001, 1, 0));
+    bullet->setContactTestBitmask(0xFFFFFFFF);
+    bulletSprite->addComponent(bullet);
+    
+    //                bulletSprite->setPosition(Vec2(cosf(rot) + 10, sinf(-rot)));
+    bulletSprite->setPosition(this->getPosition() + Vec2(50, 0));
+    layer->addChild(bulletSprite);
+    
+    bulletSprite->getPhysicsBody()->applyImpulse(Vec2(cosf(rot)*10, sinf(-rot)));
+
+}
+
 
 void Ship::_setUpEvents() {
     auto keyboardListener = cocos2d::EventListenerKeyboard::create();
@@ -79,6 +97,9 @@ void Ship::update(float delta) {
     if (_isKeyPressed(cocos2d::EventKeyboard::KeyCode::KEY_SPACE)) {
         this->getPhysicsBody()->setAngularVelocity(0);
         this->getPhysicsBody()->setVelocity(Vec2(0, 0));
+    }
+    if (_isKeyPressed(cocos2d::EventKeyboard::KeyCode::KEY_T)) {
+        this->_fire(rot);
     }
 }
 

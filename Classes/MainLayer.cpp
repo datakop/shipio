@@ -25,7 +25,7 @@ bool MainLayer::init() {
     this->_entityManager = new EntityManager();
 
     auto m = new MapGenerator();
-    pair <vector<pair<double, double> >, pair <pair<double, double>, pair<double, double> > > m_c_c;
+    pair<vector<pair<double, double> >, pair<pair<double, double>, pair<double, double> > > m_c_c;
     m_c_c = m->main(visibleSize);
     this->_dotMap = m_c_c.first;
     this->start = m_c_c.second.first;
@@ -34,20 +34,21 @@ bool MainLayer::init() {
 
     delete m;
 
-    this->_ship = _entityManager->createShipAtPosition(Point((float)(start.first), (float)(start.second)));
+    this->_ship = _entityManager->createShipAtPosition(Point((float) (start.first), (float) (start.second)));
     this->addChild(_ship);
 
-    this->_EndPoint = _entityManager->createEndPointAtPosition(Point((float)(end.first + 7), (float)(end.second + 7)));
+    this->_EndPoint = _entityManager->createEndPointAtPosition(
+            Point((float) (end.first + 7), (float) (end.second + 7)));
     this->addChild(_EndPoint);
 
     //this->addChild(_entityManager->createAsteroidAtPosition(Point(visibleSize.width / 2 + origin.x + 30,
-     //                                                             visibleSize.height / 2 + origin.y + 100)));
+    //                                                             visibleSize.height / 2 + origin.y + 100)));
 
     //this->addChild(_entityManager->createAsteroidAtPosition(Point(visibleSize.width / 2 + origin.x - 30,
-     //                                                             visibleSize.height / 2 + origin.y - 200)));
+    //                                                             visibleSize.height / 2 + origin.y - 200)));
 
     //this->addChild(_entityManager->createAsteroidAtPosition(Point(visibleSize.width / 2 + origin.x + 30,
-      //                                                            visibleSize.height / 2 + origin.y - 100)));
+    //                                                            visibleSize.height / 2 + origin.y - 100)));
 
 
     auto contactListener = EventListenerPhysicsContact::create();
@@ -55,6 +56,15 @@ bool MainLayer::init() {
     _eventDispatcher->addEventListenerWithSceneGraphPriority(contactListener, this);
 
 
+    for (int i = 1; i < _dotMap.size(); i += 2) {
+        auto seg = PhysicsBody::createEdgeSegment(Vec2(_dotMap[i - 1].first, _dotMap[i - 1].second),
+                                                  Vec2(_dotMap[i].first, _dotMap[i].second));
+        auto sprite = new Sprite();
+
+        sprite->setPhysicsBody(seg);
+
+        this->addChild(sprite);
+    }
 
     return true;
 }

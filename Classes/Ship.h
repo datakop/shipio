@@ -29,6 +29,7 @@ private:
     static std::map<cocos2d::EventKeyboard::KeyCode, bool> _keys;
 
     void _setUpEvents();
+    void _fire(float rot);
 
     bool _isKeyPressed(cocos2d::EventKeyboard::KeyCode);
 };

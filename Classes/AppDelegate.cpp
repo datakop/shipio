@@ -80,7 +80,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // create a scene. it's an autorelease object
     auto scene = Scene::createWithPhysics();
     auto physWorld = scene->getPhysicsWorld();
-//    physWorld->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+    physWorld->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
     physWorld->setGravity(Vec2(0, 0));
 
     auto layer = MainLayer::create();
