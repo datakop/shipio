@@ -27,7 +27,6 @@ public:
 
 private:
     cocos2d::PhysicsWorld *_world;
-    Ship *_ship;
     Sprite *_endPoint;
     cocos2d::DrawNode *_drawNode;
     float _angle;

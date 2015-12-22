@@ -1,7 +1,5 @@
 #include "MainLayer.h"
 
-#include "../MapGenerator/MapGenerator.h"
-
 using namespace cocos2d;
 
 
@@ -14,51 +12,22 @@ bool MainLayer::init() {
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
+    auto entityManager = EntityManager::getInstance();
 
-    auto edgeBody = PhysicsBody::createEdgeBox(visibleSize, PHYSICSBODY_MATERIAL_DEFAULT, 3);
 
-    auto edgeNode = Node::create();
-    edgeNode->setPosition(Point(visibleSize.width / 2 + origin.x,
-                                visibleSize.height / 2 + origin.y));
-    edgeNode->setPhysicsBody(edgeBody);
-    this->addChild(edgeNode);
+    for (auto wallEdge : entityManager->getWallEdges()) {
+        this->addChild(wallEdge);
+    }
 
-    this->_entityManager = new EntityManager();
-
-    auto m = new MapGenerator();
-    pair<vector<pair<double, double> >, pair<pair<double, double>, pair<double, double> > > m_c_c;
-    m_c_c = m->main(visibleSize);
-    this->_dotMap = m_c_c.first;
-    this->start = m_c_c.second.first;
-    this->end = m_c_c.second.second;
-    CCLOG("%f %f", _dotMap[0].first, _dotMap[0].second);
-
-    delete m;
-
-    this->_ship = _entityManager->createShipAtPosition(Point((float) (start.first), (float) (start.second)));
-    this->addChild(_ship);
-
-    this->_endPoint = _entityManager->createEndPointAtPosition(
-            Point((float) (end.first + 7), (float) (end.second + 7)));
-    this->addChild(_endPoint);
-
-    this->addChild(_entityManager->createAsteroidAtPosition(Point(visibleSize.width / 2 + origin.x + 30,
-                                                                  visibleSize.height / 2 + origin.y + 100)));
+    this->addChild(entityManager->createScreenBox());
+    this->addChild(entityManager->createShipAtPosition());
+    this->addChild(entityManager->createEndPointAtPosition());
+    this->addChild(entityManager->createAsteroidAtPosition(Point(visibleSize.width / 2 + origin.x + 30,
+                                                                 visibleSize.height / 2 + origin.y + 100)));
 
     auto contactListener = EventListenerPhysicsContact::create();
     contactListener->onContactBegin = CC_CALLBACK_1(MainLayer::onContactBegin, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(contactListener, this);
-
-
-    for (int i = 1; i < _dotMap.size(); i += 2) {
-        auto seg = PhysicsBody::createEdgeSegment(Vec2(_dotMap[i - 1].first, _dotMap[i - 1].second),
-                                                  Vec2(_dotMap[i].first, _dotMap[i].second));
-        auto sprite = new Sprite();
-
-        sprite->setPhysicsBody(seg);
-
-        this->addChild(sprite);
-    }
 
     return true;
 }
