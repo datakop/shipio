@@ -1,14 +1,15 @@
 #ifndef SHIPIO_SHIP_H
 #define SHIPIO_SHIP_H
 
-#include "cocos2d.h"
-
 #include <map>
+#include <vector>
+
+#include "cocos2d.h"
 
 
 class Ship : public cocos2d::Sprite {
 public:
-    static Ship *create();
+    static Ship *create(std::vector<int> items);
 
     void setHealth(int health) { _health = health; }
 
@@ -18,9 +19,14 @@ public:
 
     void initOptions();
 
+    Ship(std::vector<int> items)
+            : items_(std::move(items))
+    {};
     ~Ship();
 
 private:
+    std::vector<int> items_;
+
     int _health = 100;
     float _forwardPower = 77;
     float _rotatePower = 13;

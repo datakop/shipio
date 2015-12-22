@@ -1,6 +1,7 @@
 #include "AppDelegate.h"
-#include "MainLayer.h"
-#include "BackgroudLayer.h"
+
+#include "Layers/MainLayer.h"
+#include "Layers/BackgroudLayer.h"
 
 
 USING_NS_CC;
@@ -26,7 +27,7 @@ void AppDelegate::initGLContextAttrs() {
     GLView::setGLContextAttrs(glContextAttrs);
 }
 
-// If you want to use packages manager to install more packages, 
+// If you want to use packages manager to install more packages,
 // don't modify or remove this function
 static int register_all_packages() {
     return 0; //flag for packages manager

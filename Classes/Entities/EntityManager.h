@@ -3,6 +3,8 @@
 
 #include <cstdlib>
 
+#include "cocos2d.h"
+
 #include "Ship.h"
 #include "Asteroid.h"
 #include "EndPoint.h"

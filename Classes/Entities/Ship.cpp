@@ -1,9 +1,12 @@
+#include <iostream>
+
 #include "Ship.h"
+
 
 using namespace cocos2d;
 
-Ship *Ship::create() {
-    Ship *ship = new Ship();
+Ship *Ship::create(std::vector<int> items) {
+    Ship *ship = new Ship(items);
     if (ship->initWithFile("shipio.png")) {
         ship->autorelease();
         ship->initOptions();
@@ -27,23 +30,29 @@ void Ship::initOptions() {
     this->getPhysicsBody()->setAngularVelocityLimit(_maxAngularSpeed);
 
     this->_setUpEvents();
+
+
+    std::cout << "myvector contains:";
+    for (unsigned i=0; i<items_.size(); i++)
+        std::cout << ' ' << items_[i];
+    std::cout << '\n';
 }
 
 void Ship::_fire(float rot) {
 
     cocos2d::Scene *scene = cocos2d::Director::getInstance()->getRunningScene();
     auto layer = scene->getChildByTag(100);
-    
+
     auto bulletSprite = Sprite::create();
     auto bullet = PhysicsBody::createCircle(4, PhysicsMaterial(0.001, 1, 0));
     bullet->setContactTestBitmask(0xFFFFFFFF);
     bulletSprite->addComponent(bullet);
-    
+
     //                bulletSprite->setPosition(Vec2(cosf(rot) + 10, sinf(-rot)));
     bulletSprite->setPosition(this->getPosition() + Vec2(50, 0));
     layer->addChild(bulletSprite);
-    
-    bulletSprite->getPhysicsBody()->applyImpulse(Vec2(cosf(rot)*10, sinf(-rot)));
+
+    bulletSprite->getPhysicsBody()->applyImpulse(Vec2(cosf(rot) * 10, sinf(-rot)));
 
 }
 

@@ -4,10 +4,12 @@
 #include <vector>
 #include <cstdio>
 #include <cstdlib>
+
 #include "cocos2d.h"
-#include "Ship.h"
-#include "EntityManager.h"
-#include "EndPoint.h"
+
+#include "../Entities/Ship.h"
+#include "../Entities/EntityManager.h"
+#include "../Entities/EndPoint.h"
 
 
 class MainLayer : public cocos2d::Layer {
@@ -30,8 +32,8 @@ private:
     EndPoint *_EndPoint;
     cocos2d::DrawNode *_drawNode;
     float _angle;
-    std::pair <double, double> start;
-    std::pair <double, double> end;
+    std::pair<double, double> start;
+    std::pair<double, double> end;
     EntityManager *_entityManager;
 
     std::vector<std::pair<double, double> > _dotMap;
