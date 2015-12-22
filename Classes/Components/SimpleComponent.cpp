@@ -7,7 +7,7 @@
 bool SimpleComponent::init(cocos2d::Node *node) {
     auto ship = static_cast<Ship *>(node);
     std::cout << "SimpleComponent::init" << ship->forwardPower << std::endl;
-    
+
     return true;
 }
 

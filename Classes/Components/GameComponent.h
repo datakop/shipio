@@ -9,6 +9,7 @@ public:
     virtual bool init(cocos2d::Node *node) = 0;
 
     virtual void update(cocos2d::Node *node, float delta) = 0;
+
 private:
 };
 

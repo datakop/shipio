@@ -1,7 +1,6 @@
 #include "ShipKeyboardComponent.h"
 
 
-
 void ShipKeyboardComponent::update(Node *node, float delta) {
     auto ship = static_cast<Ship *>(node);
 

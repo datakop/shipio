@@ -43,7 +43,7 @@ bool MainLayer::init() {
     this->addChild(_endPoint);
 
     this->addChild(_entityManager->createAsteroidAtPosition(Point(visibleSize.width / 2 + origin.x + 30,
-                                                                 visibleSize.height / 2 + origin.y + 100)));
+                                                                  visibleSize.height / 2 + origin.y + 100)));
 
     auto contactListener = EventListenerPhysicsContact::create();
     contactListener->onContactBegin = CC_CALLBACK_1(MainLayer::onContactBegin, this);

@@ -28,7 +28,7 @@ public:
             , backwardPower(50)
             , rotatePower(15)
             , maxSpeed(150)
-            , maxAngularSpeed(10) {};
+            , maxAngularSpeed(10) { };
 
     ~Ship();
 

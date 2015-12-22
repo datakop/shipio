@@ -1,7 +1,5 @@
 #include "FireComponent.h"
 
-#include "../Entities/EntityManager.h"
-
 void FireComponent::update(Node *node, float delta) {
     auto sprite = static_cast<Sprite *>(node);
 

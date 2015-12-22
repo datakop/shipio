@@ -3,8 +3,8 @@
 
 using namespace std;
 
-pair <vector<pair<double, double> >, pair <pair<double, double>, pair<double, double> > >
-                                    MapGenerator::main(const cocos2d::Size screenSize) {
+pair<vector<pair<double, double> >, pair<pair<double, double>, pair<double, double> > >
+MapGenerator::main(const cocos2d::Size screenSize) {
 
 
     screen_height = screenSize.height;
@@ -24,7 +24,6 @@ pair <vector<pair<double, double> >, pair <pair<double, double>, pair<double, do
 
     square_y = new_screen_height / height;
     square_x = new_screen_width / width;
-
 
 
     CCLOG("WIDTH AND WIDTH %d %d", width, height);
@@ -60,7 +59,7 @@ pair <vector<pair<double, double> >, pair <pair<double, double>, pair<double, do
     vector<vector<int> > answer;
     vector<vector<int> > now;
     vector<struct point> seq;
-    vector <struct point> old_seq;
+    vector<struct point> old_seq;
     now.resize(height);
     for (int i = 0; i < height; i++)
         now[i].resize(width, 0);
@@ -74,103 +73,86 @@ pair <vector<pair<double, double> >, pair <pair<double, double>, pair<double, do
         if (A.s.s > max_depth) {
             max_depth = A.s.s;
             answer = A.f;
-            seq =  convert_vector(A.s.f);
+            seq = convert_vector(A.s.f);
             old_seq = A.s.f;
         }
     }
     print_vect(seq);
 
-    vector <pair <double, double> > res;
-    for (int i = 0; i < seq.size(); i++)
-    {
-        if (i == 0)
-        {
+    vector<pair<double, double> > res;
+    for (int i = 0; i < seq.size(); i++) {
+        if (i == 0) {
             type = now_type(seq[i], seq[i + 1]);
-            if (type != 1)
-            {
+            if (type != 1) {
                 res.push_back(get_coordinte(3, seq[i].x, seq[i].y));
                 res.push_back(get_coordinte(4, seq[i].x, seq[i].y));
             }
-            if (type != 3)
-            {
+            if (type != 3) {
                 res.push_back(get_coordinte(1, seq[i].x, seq[i].y));
                 res.push_back(get_coordinte(4, seq[i].x, seq[i].y));
             }
-            if (type != 2)
-            {
+            if (type != 2) {
                 res.push_back(get_coordinte(1, seq[i].x, seq[i].y));
                 res.push_back(get_coordinte(2, seq[i].x, seq[i].y));
             }
-            if (type != 4)
-            {
+            if (type != 4) {
                 res.push_back(get_coordinte(2, seq[i].x, seq[i].y));
                 res.push_back(get_coordinte(3, seq[i].x, seq[i].y));
             }
         }
-        else if (i != seq.size() - 1)
-        {
+        else if (i != seq.size() - 1) {
             int t1 = now_type(seq[i - 1], seq[i]);
             int t2 = now_type(seq[i], seq[i + 1]);
-            if (t1 != 1 && t2 != 2)
-            {
+            if (t1 != 1 && t2 != 2) {
                 res.push_back(get_coordinte(1, seq[i].x, seq[i].y));
                 res.push_back(get_coordinte(2, seq[i].x, seq[i].y));
             }
 
-            if (t1 != 3 && t2 != 4)
-            {
+            if (t1 != 3 && t2 != 4) {
                 res.push_back(get_coordinte(2, seq[i].x, seq[i].y));
                 res.push_back(get_coordinte(3, seq[i].x, seq[i].y));
             }
 
-            if (t1 != 2 && t2 != 1)
-            {
+            if (t1 != 2 && t2 != 1) {
                 res.push_back(get_coordinte(3, seq[i].x, seq[i].y));
                 res.push_back(get_coordinte(4, seq[i].x, seq[i].y));
             }
 
-            if (t1 != 4 && t2 != 3)
-            {
+            if (t1 != 4 && t2 != 3) {
                 res.push_back(get_coordinte(4, seq[i].x, seq[i].y));
                 res.push_back(get_coordinte(1, seq[i].x, seq[i].y));
             }
         }
-        else
-        {
+        else {
             type = now_type(seq[i - 1], seq[i]);
-            if (type != 1)
-            {
+            if (type != 1) {
                 res.push_back(get_coordinte(1, seq[i].x, seq[i].y));
                 res.push_back(get_coordinte(2, seq[i].x, seq[i].y));
             }
 
-            if (type != 3)
-            {
+            if (type != 3) {
                 res.push_back(get_coordinte(2, seq[i].x, seq[i].y));
                 res.push_back(get_coordinte(3, seq[i].x, seq[i].y));
             }
 
-            if (type != 2)
-            {
+            if (type != 2) {
                 res.push_back(get_coordinte(3, seq[i].x, seq[i].y));
                 res.push_back(get_coordinte(4, seq[i].x, seq[i].y));
             }
 
-            if (type != 4)
-            {
+            if (type != 4) {
                 res.push_back(get_coordinte(4, seq[i].x, seq[i].y));
                 res.push_back(get_coordinte(1, seq[i].x, seq[i].y));
             }
         }
     }
 
-    for (int i = 0; i < res.size(); i++)
-    {
+    for (int i = 0; i < res.size(); i++) {
         res[i].second += 7;
         res[i].first += 7;
     }
 
-    return mp(res, mp(get_square_center_coordinates(seq[0]), get_square_center_coordinates(seq[seq.size()-1])));
+    return mp(res, mp(get_square_center_coordinates(seq[0]), get_square_center_coordinates(seq[seq.size() - 1])));
 }
 
 
@@ -283,11 +265,10 @@ void MapGenerator::print_point(struct point p) {
     printf("%d %d\n", p.x, p.y);
 }
 
-vector<struct point > MapGenerator::convert_vector(vector<point> vector1) {
-    vector <struct point > result;
-    for (int i = 0; i < vector1.size(); i++)
-    {
-        struct point A(vector1[i].y, height - vector1[i].x-1);
+vector<struct point> MapGenerator::convert_vector(vector<point> vector1) {
+    vector<struct point> result;
+    for (int i = 0; i < vector1.size(); i++) {
+        struct point A(vector1[i].y, height - vector1[i].x - 1);
         result.push_back(A);
     }
     return result;
@@ -298,15 +279,13 @@ int MapGenerator::now_type(struct point A, struct point B) {
     int y1 = A.y;
     int x2 = B.x;
     int y2 = B.y;
-    if (x1 == x2)
-    {
+    if (x1 == x2) {
         if (y2 > y1)
             return 4;
         else
             return 3;
     }
-    else if(y1 == y2)
-    {
+    else if (y1 == y2) {
         if (x2 > x1)
             return 1;
         else
@@ -315,20 +294,16 @@ int MapGenerator::now_type(struct point A, struct point B) {
 }
 
 pair<float, float> MapGenerator::get_coordinte(int number, int x, int y) {
-    if (number == 1)
-    {
+    if (number == 1) {
         return mp(x * square_x, y * square_y);
     }
-    else if (number == 2)
-    {
+    else if (number == 2) {
         return mp(x * square_x, y * square_y + square_y);
     }
-    else if (number == 3)
-    {
+    else if (number == 3) {
         return mp(x * square_x + square_x, y * square_y + square_y);
     }
-    else if (number == 4)
-    {
+    else if (number == 4) {
         return mp(x * square_x + square_x, y * square_y);
     }
 }
