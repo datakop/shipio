@@ -6,38 +6,38 @@
 
 #include "cocos2d.h"
 
+#include "../Components/GameComponent.h"
 
-class Ship : public cocos2d::Sprite {
+using namespace std;
+using namespace cocos2d;
+
+
+class Ship : public Sprite {
 public:
-    static Ship *create(std::vector<int> items);
+    float forwardPower;
+    float backwardPower;
+    float rotatePower;
+    float maxSpeed;
+    float maxAngularSpeed;
 
-    void setHealth(int health) { _health = health; }
+    static Ship *create(vector<GameComponent *> components);
 
-    int getHealth() { return _health; }
+    Ship(vector<GameComponent *> components)
+            : _components(move(components))
+            , forwardPower(50)
+            , backwardPower(50)
+            , rotatePower(15)
+            , maxSpeed(150)
+            , maxAngularSpeed(10) {};
 
-    void update(float delta);
+    ~Ship();
 
     void initOptions();
 
-    Ship(std::vector<int> items)
-            : items_(std::move(items))
-    {};
-    ~Ship();
+    void update(float delta);
 
 private:
-    std::vector<int> items_;
-
-    int _health = 100;
-    float _forwardPower = 77;
-    float _rotatePower = 13;
-    float _maxSpeed = 150;
-    float _maxAngularSpeed = 1;
-    static std::map<cocos2d::EventKeyboard::KeyCode, bool> _keys;
-
-    void _setUpEvents();
-    void _fire(float rot);
-
-    bool _isKeyPressed(cocos2d::EventKeyboard::KeyCode);
+    vector<GameComponent *> _components;
 };
 
 #endif /* defined(SHIPIO_SHIP_H) */

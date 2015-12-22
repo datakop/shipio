@@ -1,16 +1,27 @@
-#ifndef __shipio__KeyboardInputComponent__
-#define __shipio__KeyboardInputComponent__
+#ifndef SHIPIO_KeyboardInputComponent_H
+#define SHIPIO_KeyboardInputComponent_H
+
+#include "map"
 
 #include "cocos2d.h"
 
-class KeyboardInputComponent {
+#include "GameComponent.h"
+
+using namespace std;
+using namespace cocos2d;
+
+
+class KeyboardInputComponent : public GameComponent {
 public:
-    void update(cocos2d::Sprite &sprite, float delta);
+    virtual bool init(cocos2d::Node *node);
+
+    virtual void update(cocos2d::Node *node, float delta) = 0;
+
+    bool isKeyPressed(EventKeyboard::KeyCode code);
 
 private:
-    std::map<cocos2d::EventKeyboard::KeyCode, bool> _keys;
-
-    bool _isKeyPressed(cocos2d::EventKeyboard::KeyCode code);
+    map<EventKeyboard::KeyCode, bool> _keys;
 };
 
-#endif /* defined(__shipio__KeyboardInputComponent__) */
+
+#endif //SHIPIO_KeyboardInputComponent_H

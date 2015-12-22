@@ -9,7 +9,6 @@
 
 #include "../Entities/Ship.h"
 #include "../Entities/EntityManager.h"
-#include "../Entities/EndPoint.h"
 
 
 class MainLayer : public cocos2d::Layer {
@@ -29,7 +28,7 @@ public:
 private:
     cocos2d::PhysicsWorld *_world;
     Ship *_ship;
-    EndPoint *_EndPoint;
+    Sprite *_endPoint;
     cocos2d::DrawNode *_drawNode;
     float _angle;
     std::pair<double, double> start;

@@ -64,14 +64,6 @@
 		95B0602F1C2873AF0016DAE1 /* end_point1.png in Resources */ = {isa = PBXBuildFile; fileRef = 95B0602A1C2873AF0016DAE1 /* end_point1.png */; };
 		95B060301C2873AF0016DAE1 /* end_point2.png in Resources */ = {isa = PBXBuildFile; fileRef = 95B0602B1C2873AF0016DAE1 /* end_point2.png */; };
 		95B060311C2873AF0016DAE1 /* end_point2.png in Resources */ = {isa = PBXBuildFile; fileRef = 95B0602B1C2873AF0016DAE1 /* end_point2.png */; };
-		95B63C2B1C29779A001CB59A /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B63C161C29779A001CB59A /* Component.cpp */; };
-		95B63C2C1C29779A001CB59A /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B63C161C29779A001CB59A /* Component.cpp */; };
-		95B63C2D1C29779A001CB59A /* KeyboardInputComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B63C181C29779A001CB59A /* KeyboardInputComponent.cpp */; };
-		95B63C2E1C29779A001CB59A /* KeyboardInputComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B63C181C29779A001CB59A /* KeyboardInputComponent.cpp */; };
-		95B63C2F1C29779A001CB59A /* Asteroid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B63C1B1C29779A001CB59A /* Asteroid.cpp */; };
-		95B63C301C29779A001CB59A /* Asteroid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B63C1B1C29779A001CB59A /* Asteroid.cpp */; };
-		95B63C311C29779A001CB59A /* EndPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B63C1D1C29779A001CB59A /* EndPoint.cpp */; };
-		95B63C321C29779A001CB59A /* EndPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B63C1D1C29779A001CB59A /* EndPoint.cpp */; };
 		95B63C331C29779A001CB59A /* EntityManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B63C1F1C29779A001CB59A /* EntityManager.cpp */; };
 		95B63C341C29779A001CB59A /* EntityManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B63C1F1C29779A001CB59A /* EntityManager.cpp */; };
 		95B63C351C29779A001CB59A /* Ship.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B63C211C29779A001CB59A /* Ship.cpp */; };
@@ -82,6 +74,14 @@
 		95B63C3A1C29779A001CB59A /* MainLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B63C261C29779A001CB59A /* MainLayer.cpp */; };
 		95B63C3B1C29779A001CB59A /* MapGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B63C291C29779A001CB59A /* MapGenerator.cpp */; };
 		95B63C3C1C29779A001CB59A /* MapGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B63C291C29779A001CB59A /* MapGenerator.cpp */; };
+		95B63C5C1C298CCF001CB59A /* FireComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B63C531C298CCF001CB59A /* FireComponent.cpp */; };
+		95B63C5D1C298CCF001CB59A /* FireComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B63C531C298CCF001CB59A /* FireComponent.cpp */; };
+		95B63C5E1C298CCF001CB59A /* KeyboardInputComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B63C561C298CCF001CB59A /* KeyboardInputComponent.cpp */; };
+		95B63C5F1C298CCF001CB59A /* KeyboardInputComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B63C561C298CCF001CB59A /* KeyboardInputComponent.cpp */; };
+		95B63C601C298CCF001CB59A /* ShipKeyboardComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B63C581C298CCF001CB59A /* ShipKeyboardComponent.cpp */; };
+		95B63C611C298CCF001CB59A /* ShipKeyboardComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B63C581C298CCF001CB59A /* ShipKeyboardComponent.cpp */; };
+		95B63C621C298CCF001CB59A /* SimpleComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B63C5A1C298CCF001CB59A /* SimpleComponent.cpp */; };
+		95B63C631C298CCF001CB59A /* SimpleComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B63C5A1C298CCF001CB59A /* SimpleComponent.cpp */; };
 		95C0ED6D1C11C2050049645C /* shipio.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C0ED6B1C11C2050049645C /* shipio.png */; };
 		95C0ED6E1C11C2050049645C /* shipio.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C0ED6B1C11C2050049645C /* shipio.png */; };
 		95C0ED6F1C11C2050049645C /* stones.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 95C0ED6C1C11C2050049645C /* stones.jpg */; };
@@ -189,14 +189,6 @@
 		95B060291C2873AF0016DAE1 /* end_point_new_galaxy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = end_point_new_galaxy.jpg; sourceTree = "<group>"; };
 		95B0602A1C2873AF0016DAE1 /* end_point1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = end_point1.png; sourceTree = "<group>"; };
 		95B0602B1C2873AF0016DAE1 /* end_point2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = end_point2.png; sourceTree = "<group>"; };
-		95B63C161C29779A001CB59A /* Component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Component.cpp; sourceTree = "<group>"; };
-		95B63C171C29779A001CB59A /* Component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Component.h; sourceTree = "<group>"; };
-		95B63C181C29779A001CB59A /* KeyboardInputComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KeyboardInputComponent.cpp; sourceTree = "<group>"; };
-		95B63C191C29779A001CB59A /* KeyboardInputComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardInputComponent.h; sourceTree = "<group>"; };
-		95B63C1B1C29779A001CB59A /* Asteroid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Asteroid.cpp; sourceTree = "<group>"; };
-		95B63C1C1C29779A001CB59A /* Asteroid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Asteroid.h; sourceTree = "<group>"; };
-		95B63C1D1C29779A001CB59A /* EndPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EndPoint.cpp; sourceTree = "<group>"; };
-		95B63C1E1C29779A001CB59A /* EndPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndPoint.h; sourceTree = "<group>"; };
 		95B63C1F1C29779A001CB59A /* EntityManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EntityManager.cpp; sourceTree = "<group>"; };
 		95B63C201C29779A001CB59A /* EntityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityManager.h; sourceTree = "<group>"; };
 		95B63C211C29779A001CB59A /* Ship.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ship.cpp; sourceTree = "<group>"; };
@@ -207,6 +199,15 @@
 		95B63C271C29779A001CB59A /* MainLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainLayer.h; sourceTree = "<group>"; };
 		95B63C291C29779A001CB59A /* MapGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapGenerator.cpp; sourceTree = "<group>"; };
 		95B63C2A1C29779A001CB59A /* MapGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapGenerator.h; sourceTree = "<group>"; };
+		95B63C531C298CCF001CB59A /* FireComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FireComponent.cpp; sourceTree = "<group>"; };
+		95B63C541C298CCF001CB59A /* FireComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FireComponent.h; sourceTree = "<group>"; };
+		95B63C551C298CCF001CB59A /* GameComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameComponent.h; sourceTree = "<group>"; };
+		95B63C561C298CCF001CB59A /* KeyboardInputComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KeyboardInputComponent.cpp; sourceTree = "<group>"; };
+		95B63C571C298CCF001CB59A /* KeyboardInputComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardInputComponent.h; sourceTree = "<group>"; };
+		95B63C581C298CCF001CB59A /* ShipKeyboardComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShipKeyboardComponent.cpp; sourceTree = "<group>"; };
+		95B63C591C298CCF001CB59A /* ShipKeyboardComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShipKeyboardComponent.h; sourceTree = "<group>"; };
+		95B63C5A1C298CCF001CB59A /* SimpleComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleComponent.cpp; sourceTree = "<group>"; };
+		95B63C5B1C298CCF001CB59A /* SimpleComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleComponent.h; sourceTree = "<group>"; };
 		95C0ED6B1C11C2050049645C /* shipio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shipio.png; sourceTree = "<group>"; };
 		95C0ED6C1C11C2050049645C /* stones.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = stones.jpg; sourceTree = "<group>"; };
 		95C0ED741C11C3B70049645C /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball.png; sourceTree = "<group>"; };
@@ -426,10 +427,15 @@
 		95B63C151C29779A001CB59A /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				95B63C161C29779A001CB59A /* Component.cpp */,
-				95B63C171C29779A001CB59A /* Component.h */,
-				95B63C181C29779A001CB59A /* KeyboardInputComponent.cpp */,
-				95B63C191C29779A001CB59A /* KeyboardInputComponent.h */,
+				95B63C531C298CCF001CB59A /* FireComponent.cpp */,
+				95B63C541C298CCF001CB59A /* FireComponent.h */,
+				95B63C551C298CCF001CB59A /* GameComponent.h */,
+				95B63C561C298CCF001CB59A /* KeyboardInputComponent.cpp */,
+				95B63C571C298CCF001CB59A /* KeyboardInputComponent.h */,
+				95B63C581C298CCF001CB59A /* ShipKeyboardComponent.cpp */,
+				95B63C591C298CCF001CB59A /* ShipKeyboardComponent.h */,
+				95B63C5A1C298CCF001CB59A /* SimpleComponent.cpp */,
+				95B63C5B1C298CCF001CB59A /* SimpleComponent.h */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -437,10 +443,6 @@
 		95B63C1A1C29779A001CB59A /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				95B63C1B1C29779A001CB59A /* Asteroid.cpp */,
-				95B63C1C1C29779A001CB59A /* Asteroid.h */,
-				95B63C1D1C29779A001CB59A /* EndPoint.cpp */,
-				95B63C1E1C29779A001CB59A /* EndPoint.h */,
 				95B63C1F1C29779A001CB59A /* EntityManager.cpp */,
 				95B63C201C29779A001CB59A /* EntityManager.h */,
 				95B63C211C29779A001CB59A /* Ship.cpp */,
@@ -630,17 +632,17 @@
 			files = (
 				95B060171C2873710016DAE1 /* AppDelegate.cpp in Sources */,
 				95B63C331C29779A001CB59A /* EntityManager.cpp in Sources */,
+				95B63C5E1C298CCF001CB59A /* KeyboardInputComponent.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				95B63C3B1C29779A001CB59A /* MapGenerator.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				95B63C391C29779A001CB59A /* MainLayer.cpp in Sources */,
 				95B63C371C29779A001CB59A /* BackgroudLayer.cpp in Sources */,
-				95B63C2D1C29779A001CB59A /* KeyboardInputComponent.cpp in Sources */,
+				95B63C601C298CCF001CB59A /* ShipKeyboardComponent.cpp in Sources */,
+				95B63C5C1C298CCF001CB59A /* FireComponent.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
-				95B63C2F1C29779A001CB59A /* Asteroid.cpp in Sources */,
-				95B63C311C29779A001CB59A /* EndPoint.cpp in Sources */,
-				95B63C2B1C29779A001CB59A /* Component.cpp in Sources */,
 				95B63C351C29779A001CB59A /* Ship.cpp in Sources */,
+				95B63C621C298CCF001CB59A /* SimpleComponent.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -648,17 +650,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95B63C321C29779A001CB59A /* EndPoint.cpp in Sources */,
+				95B63C631C298CCF001CB59A /* SimpleComponent.cpp in Sources */,
+				95B63C5F1C298CCF001CB59A /* KeyboardInputComponent.cpp in Sources */,
 				95B060181C2873710016DAE1 /* AppDelegate.cpp in Sources */,
 				95B63C3C1C29779A001CB59A /* MapGenerator.cpp in Sources */,
 				95B63C3A1C29779A001CB59A /* MainLayer.cpp in Sources */,
-				95B63C2C1C29779A001CB59A /* Component.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
-				95B63C2E1C29779A001CB59A /* KeyboardInputComponent.cpp in Sources */,
+				95B63C5D1C298CCF001CB59A /* FireComponent.cpp in Sources */,
 				95B63C361C29779A001CB59A /* Ship.cpp in Sources */,
 				95B63C341C29779A001CB59A /* EntityManager.cpp in Sources */,
 				95B63C381C29779A001CB59A /* BackgroudLayer.cpp in Sources */,
-				95B63C301C29779A001CB59A /* Asteroid.cpp in Sources */,
+				95B63C611C298CCF001CB59A /* ShipKeyboardComponent.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

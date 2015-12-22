@@ -38,19 +38,12 @@ bool MainLayer::init() {
     this->_ship = _entityManager->createShipAtPosition(Point((float) (start.first), (float) (start.second)));
     this->addChild(_ship);
 
-    this->_EndPoint = _entityManager->createEndPointAtPosition(
+    this->_endPoint = _entityManager->createEndPointAtPosition(
             Point((float) (end.first + 7), (float) (end.second + 7)));
-    this->addChild(_EndPoint);
+    this->addChild(_endPoint);
 
-    //this->addChild(_entityManager->createAsteroidAtPosition(Point(visibleSize.width / 2 + origin.x + 30,
-    //                                                             visibleSize.height / 2 + origin.y + 100)));
-
-    //this->addChild(_entityManager->createAsteroidAtPosition(Point(visibleSize.width / 2 + origin.x - 30,
-    //                                                             visibleSize.height / 2 + origin.y - 200)));
-
-    //this->addChild(_entityManager->createAsteroidAtPosition(Point(visibleSize.width / 2 + origin.x + 30,
-    //                                                            visibleSize.height / 2 + origin.y - 100)));
-
+    this->addChild(_entityManager->createAsteroidAtPosition(Point(visibleSize.width / 2 + origin.x + 30,
+                                                                 visibleSize.height / 2 + origin.y + 100)));
 
     auto contactListener = EventListenerPhysicsContact::create();
     contactListener->onContactBegin = CC_CALLBACK_1(MainLayer::onContactBegin, this);
@@ -120,8 +113,8 @@ void MainLayer::update(float delta) {
 
     _angle += 1.5f * (float) M_PI / 180.0f;
 
-    if (_ship && _ship->getHealth() < 0)
-        _ship->removeFromParentAndCleanup(true);
+//    if (_ship && _ship->getHealth() < 0)
+//        _ship->removeFromParentAndCleanup(true);
 }
 
 
