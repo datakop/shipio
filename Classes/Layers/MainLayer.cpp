@@ -1,3 +1,5 @@
+#include <Scenes/Definitions.h>
+#include <Scenes/MainMenuScene.h>
 #include "MainLayer.h"
 
 using namespace cocos2d;

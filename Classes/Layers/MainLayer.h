@@ -7,8 +7,8 @@
 
 #include "cocos2d.h"
 
-#include "../Entities/Ship.h"
-#include "../Entities/EntityManager.h"
+#include "Entities/Ship.h"
+#include "Entities/EntityManager.h"
 
 
 class MainLayer : public cocos2d::Layer {
